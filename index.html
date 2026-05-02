@@ -117,7 +117,7 @@
     </div>
   </div>
 
-  <!-- NEWSLETTER - NOW FULLY WORKING -->
+  <!-- NEWSLETTER -->
   <div class="section" style="background:#111; text-align:center; padding:4rem 1rem;" id="newsletter">
     <h2 style="color:#a0d8ff;">Stay in Deep Rest</h2>
     <p style="max-width:520px; margin:0 auto 2rem; font-size:1.1rem;">Get new sleep stories, 528Hz releases, nightly reminders & gentle tips delivered to your inbox.</p>
@@ -131,7 +131,6 @@
       </button>
     </form>
 
-    <!-- Success Message -->
     <div id="successMessage" style="display:none; color:#a0d8ff; font-size:1.3rem; margin-top:20px;">
       ✅ Thank you! You're now part of Home of Rest.<br>
       <span style="font-size:1.1rem;">Welcome to the calmest corner of the internet 🌙</span>
@@ -145,15 +144,80 @@
     <p style="margin-top:0.5rem;">Sweet dreams 🛌💤</p>
   </footer>
 
+  <!-- VISITOR + VIDEO TRACKING -->
   <script>
-    // Show success message after subscription
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('subscribe') === 'success') {
-      document.getElementById('subscribeForm').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'block';
-      // Clean the URL
-      history.replaceState({}, document.title, window.location.pathname);
+    let sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+
+    // Page visit logging (already working)
+    async function logVisit(duration = null) {
+      try {
+        await fetch('/log-visit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_id: sessionId, duration: duration }),
+          keepalive: true
+        });
+      } catch (e) {}
     }
+
+    // Video watching logging
+    async function logVideo(videoId, videoTitle, watchTime) {
+      try {
+        await fetch('/log-video', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: sessionId,
+            video_id: videoId,
+            video_title: videoTitle,
+            watch_time_seconds: watchTime
+          }),
+          keepalive: true
+        });
+      } catch (e) {}
+    }
+
+    // Load YouTube IFrame API for video tracking
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+
+    window.onYouTubeIframeAPIReady = function() {
+      document.querySelectorAll('iframe[src*="youtube.com"]').forEach(iframe => {
+        const videoId = iframe.src.split('/embed/')[1]?.split('?')[0] || 'unknown';
+        const titleEl = iframe.closest('.video-card')?.querySelector('p');
+        const videoTitle = titleEl ? titleEl.textContent.trim() : 'Unknown Video';
+
+        new YT.Player(iframe, {
+          events: {
+            'onStateChange': (event) => {
+              if (event.data === YT.PlayerState.PLAYING) {
+                // Log every 10 seconds while playing
+                setTimeout(() => {
+                  if (event.target.getPlayerState() === YT.PlayerState.PLAYING) {
+                    const currentTime = Math.round(event.target.getCurrentTime());
+                    logVideo(videoId, videoTitle, currentTime);
+                  }
+                }, 10000);
+              }
+            }
+          }
+        });
+      });
+    };
+
+    // Page load & time spent
+    window.addEventListener('load', () => logVisit());
+    window.addEventListener('beforeunload', () => {
+      const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
+      logVisit(timeSpent);
+    });
+
+    // Periodic update
+    setInterval(() => {
+      const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
+      logVisit(timeSpent);
+    }, 30000);
   </script>
 </body>
 </html>

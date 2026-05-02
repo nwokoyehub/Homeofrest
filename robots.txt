@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://homeofrest.com/sitemap.xml

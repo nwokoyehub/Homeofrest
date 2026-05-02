@@ -5,36 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unsubscribe • Home of Rest</title>
   <style>
-    body { font-family: system-ui, sans-serif; background:#0a0a0a; color:#e0e0e0; margin:0; padding:0; display:flex; align-items:center; justify-content:center; min-height:100vh; }
-    .container { max-width:520px; background:#111; padding:50px 40px; border-radius:20px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+    body { 
+      font-family: system-ui, -apple-system, sans-serif; 
+      background:#0a0a0a; 
+      color:#e0e0e0; 
+      margin:0; 
+      padding:0; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      min-height:100vh; 
+    }
+    .container { 
+      max-width:520px; 
+      background:#111; 
+      padding:50px 40px; 
+      border-radius:20px; 
+      text-align:center; 
+      box-shadow:0 10px 30px rgba(0,0,0,0.6); 
+    }
     h1 { color:#a0d8ff; font-size:2.2rem; margin-bottom:20px; }
     p { font-size:1.15rem; line-height:1.6; margin-bottom:30px; opacity:0.9; }
-    input { width:100%; padding:18px; border:none; border-radius:50px; background:#1a1a1a; color:#fff; font-size:1.1rem; margin-bottom:20px; }
-    button { padding:18px 50px; background:#a0d8ff; color:#0a0a0a; border:none; border-radius:50px; font-size:1.2rem; font-weight:600; cursor:pointer; }
-    .success { color:#a0d8ff; font-size:1.3rem; margin-top:20px; display:none; }
+    input { 
+      width:100%; 
+      padding:18px; 
+      border:none; 
+      border-radius:50px; 
+      background:#1a1a1a; 
+      color:#fff; 
+      font-size:1.1rem; 
+      margin-bottom:20px; 
+    }
+    button { 
+      padding:18px 50px; 
+      background:#a0d8ff; 
+      color:#0a0a0a; 
+      border:none; 
+      border-radius:50px; 
+      font-size:1.2rem; 
+      font-weight:600; 
+      cursor:pointer; 
+      transition: all 0.3s; 
+    }
+    button:hover { transform: scale(1.05); }
+    .success { 
+      color:#a0d8ff; 
+      font-size:1.4rem; 
+      margin-top:20px; 
+      display:none; 
+    }
+    .form-container { transition: all 0.4s; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Unsubscribe from Home of Rest</h1>
-    <p>Are you sure you want to stop receiving sleep stories, new releases, and gentle reminders?</p>
-    
-    <form id="unsubscribeForm" action="/unsubscribe" method="POST">
-      <input type="email" id="email" name="email" placeholder="your@email.com" required>
-      <button type="submit">Yes, Unsubscribe Me</button>
-    </form>
+    <div id="formContainer" class="form-container">
+      <h1>Unsubscribe from Home of Rest</h1>
+      <p>We’re sorry to see you go.<br>Are you sure you want to stop receiving new sleep stories, 528Hz releases, and gentle reminders?</p>
+      
+      <form id="unsubscribeForm" action="/unsubscribe" method="POST">
+        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Yes, Unsubscribe Me</button>
+      </form>
+    </div>
 
-    <p id="successMessage" class="success">✅ You have been successfully unsubscribed.<br>We respect your peace.</p>
+    <!-- Success Message -->
+    <div id="successMessage" class="success">
+      ✅ You have been successfully unsubscribed.<br>
+      <span style="font-size:1.1rem; opacity:0.9;">We respect your peace. Thank you for being part of Home of Rest.</span>
+      <br><br>
+      <a href="https://homeofrest.com" style="color:#a0d8ff; text-decoration:none; font-size:1.1rem;">← Back to Home of Rest</a>
+    </div>
+
     <p style="font-size:0.9rem; opacity:0.6; margin-top:40px;">
       If you change your mind later, you can always re-subscribe on the homepage.
     </p>
   </div>
 
   <script>
-    // Auto-fill email if passed in URL (e.g. ?email=...)
+    // Check for success parameter from redirect
+    function checkSuccess() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('success') === '1') {
+        document.getElementById('formContainer').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+      }
+    }
+
+    // Auto-fill email if passed in URL
     const urlParams = new URLSearchParams(window.location.search);
     const emailParam = urlParams.get('email');
-    if (emailParam) document.getElementById('email').value = emailParam;
+    if (emailParam) {
+      document.getElementById('email').value = decodeURIComponent(emailParam);
+    }
+
+    // Run on page load
+    window.addEventListener('load', checkSuccess);
+
+    // Fallback for instant feedback (in case of slow redirect)
+    document.getElementById('unsubscribeForm').addEventListener('submit', function() {
+      setTimeout(() => {
+        if (document.getElementById('successMessage').style.display !== 'block') {
+          document.getElementById('formContainer').style.display = 'none';
+          document.getElementById('successMessage').style.display = 'block';
+        }
+      }, 600);
+    });
+  </script>
+</body>
+</html>    if (emailParam) document.getElementById('email').value = emailParam;
 
     // Show success message after form submit
     document.getElementById('unsubscribeForm').addEventListener('submit', function() {

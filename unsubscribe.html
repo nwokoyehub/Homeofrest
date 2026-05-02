@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -54,12 +54,11 @@
       margin-top:20px; 
       display:none; 
     }
-    .form-container { transition: all 0.4s; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div id="formContainer" class="form-container">
+    <div id="formContainer">
       <h1>Unsubscribe from Home of Rest</h1>
       <p>We’re sorry to see you go.<br>Are you sure you want to stop receiving new sleep stories, 528Hz releases, and gentle reminders?</p>
       
@@ -69,7 +68,6 @@
       </form>
     </div>
 
-    <!-- Success Message -->
     <div id="successMessage" class="success">
       ✅ You have been successfully unsubscribed.<br>
       <span style="font-size:1.1rem; opacity:0.9;">We respect your peace. Thank you for being part of Home of Rest.</span>
@@ -99,28 +97,14 @@
       document.getElementById('email').value = decodeURIComponent(emailParam);
     }
 
-    // Run on page load
     window.addEventListener('load', checkSuccess);
 
-    // Fallback for instant feedback (in case of slow redirect)
+    // Fallback instant feedback
     document.getElementById('unsubscribeForm').addEventListener('submit', function() {
       setTimeout(() => {
-        if (document.getElementById('successMessage').style.display !== 'block') {
-          document.getElementById('formContainer').style.display = 'none';
-          document.getElementById('successMessage').style.display = 'block';
-        }
-      }, 600);
-    });
-  </script>
-</body>
-</html>    if (emailParam) document.getElementById('email').value = emailParam;
-
-    // Show success message after form submit
-    document.getElementById('unsubscribeForm').addEventListener('submit', function() {
-      setTimeout(() => {
-        document.getElementById('unsubscribeForm').style.display = 'none';
+        document.getElementById('formContainer').style.display = 'none';
         document.getElementById('successMessage').style.display = 'block';
-      }, 800);
+      }, 600);
     });
   </script>
 </body>

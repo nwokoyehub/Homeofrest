@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
-  
+ 
   <!-- SEO -->
   <title>Home of Rest • Deep Sleep Music, 528Hz Healing Frequencies & Relaxation</title>
   <meta name="description" content="Sonic therapy with 432Hz, 528Hz & 396Hz healing frequencies. Deep sleep, meditation, emotional release and inner peace.">
-
   <style>
     body { font-family: system-ui, -apple-system, sans-serif; background: #0a0a0a; color: #e0e0e0; margin: 0; padding: 0; line-height: 1.5; }
     header { background: #111; padding: 1.2rem; text-align: center; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
@@ -29,7 +28,6 @@
   </style>
 </head>
 <body>
-
   <header>
     <div class="logo">Home of Rest 🛌</div>
     <nav>
@@ -44,7 +42,7 @@
   <div class="hero">
     <h1>Sonic Therapy for Relaxation</h1>
     <p style="font-size:1.4rem; max-width:720px; margin:1rem auto;">432Hz • 528Hz • 396Hz • Insomnia Healing Frequencies & Heavy Rain</p>
-    </div>
+  </div>
 
   <!-- HEALING DESCRIPTION -->
   <div class="section" style="background:#111; text-align:center;">
@@ -119,16 +117,26 @@
     </div>
   </div>
 
-  <!-- NEWSLETTER -->
-  <div class="section" style="background:#111; text-align:center; padding:4rem 1rem;">
+  <!-- NEWSLETTER - NOW FULLY WORKING -->
+  <div class="section" style="background:#111; text-align:center; padding:4rem 1rem;" id="newsletter">
     <h2 style="color:#a0d8ff;">Stay in Deep Rest</h2>
     <p style="max-width:520px; margin:0 auto 2rem; font-size:1.1rem;">Get new sleep stories, 528Hz releases, nightly reminders & gentle tips delivered to your inbox.</p>
-    
-    <form style="max-width:420px; margin:0 auto; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-      <input type="email" placeholder="your@email.com" required style="flex:1; min-width:240px; padding:18px 20px; border:none; border-radius:50px; background:#1a1a1a; color:#e0e0e0; font-size:1.1rem;">
-      <button type="submit" style="padding:18px 36px; background:#a0d8ff; color:#0a0a0a; border:none; border-radius:50px; font-weight:600; font-size:1.1rem; cursor:pointer;">Subscribe 🛌</button>
+   
+    <form id="subscribeForm" action="/subscribe" method="POST" style="max-width:420px; margin:0 auto; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+      <input type="email" name="email" id="emailInput" placeholder="your@email.com" required 
+             style="flex:1; min-width:240px; padding:18px 20px; border:none; border-radius:50px; background:#1a1a1a; color:#e0e0e0; font-size:1.1rem;">
+      <button type="submit" 
+              style="padding:18px 36px; background:#a0d8ff; color:#0a0a0a; border:none; border-radius:50px; font-weight:600; font-size:1.1rem; cursor:pointer;">
+        Subscribe 🛌
+      </button>
     </form>
-    
+
+    <!-- Success Message -->
+    <div id="successMessage" style="display:none; color:#a0d8ff; font-size:1.3rem; margin-top:20px;">
+      ✅ Thank you! You're now part of Home of Rest.<br>
+      <span style="font-size:1.1rem;">Welcome to the calmest corner of the internet 🌙</span>
+    </div>
+   
     <p style="font-size:0.9rem; opacity:0.6; margin-top:1.5rem;">We respect your peace. Unsubscribe anytime. Only 1–2 emails per week.</p>
   </div>
 
@@ -137,5 +145,15 @@
     <p style="margin-top:0.5rem;">Sweet dreams 🛌💤</p>
   </footer>
 
+  <script>
+    // Show success message after subscription
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('subscribe') === 'success') {
+      document.getElementById('subscribeForm').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
+      // Clean the URL
+      history.replaceState({}, document.title, window.location.pathname);
+    }
+  </script>
 </body>
 </html>

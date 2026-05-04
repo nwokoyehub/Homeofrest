@@ -144,7 +144,7 @@
     <p style="margin-top:0.5rem;">Sweet dreams 🛌💤</p>
   </footer>
 
-  <!-- FIXED & IMPROVED VIDEO TRACKING -->
+  <!-- IMPROVED CONTINUOUS VIDEO TRACKING -->
   <script>
     let sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
     console.log('%c[DEBUG] Session started:', 'color:#a0d8ff', sessionId);
@@ -163,7 +163,7 @@
           }),
           keepalive: true
         });
-      } catch (e) { console.error('logVideo failed', e); }
+      } catch (e) {}
     }
 
     // Force enablejsapi=1 on all YouTube iframes
@@ -182,20 +182,25 @@
 
     window.onYouTubeIframeAPIReady = function() {
       console.log('%c[DEBUG] YouTube IFrame API Ready', 'color:#a0d8ff');
+
       document.querySelectorAll('iframe[src*="youtube.com"]').forEach(iframe => {
         const videoId = iframe.src.split('/embed/')[1]?.split('?')[0] || 'unknown';
         const titleEl = iframe.closest('.video-card')?.querySelector('p');
         const videoTitle = titleEl ? titleEl.textContent.trim() : 'Unknown Video';
 
-        new YT.Player(iframe, {
+        const player = new YT.Player(iframe, {
           events: {
             'onStateChange': (event) => {
               if (event.data === YT.PlayerState.PLAYING) {
                 console.log('%c[DEBUG] Video STARTED PLAYING →', 'color:#a0d8ff', videoTitle);
-                setTimeout(() => {
-                  if (event.target.getPlayerState() === YT.PlayerState.PLAYING) {
-                    const currentTime = Math.round(event.target.getCurrentTime());
+
+                // Log every 8 seconds while the video is playing
+                const interval = setInterval(() => {
+                  if (player.getPlayerState && player.getPlayerState() === YT.PlayerState.PLAYING) {
+                    const currentTime = Math.round(player.getCurrentTime());
                     logVideo(videoId, videoTitle, currentTime);
+                  } else {
+                    clearInterval(interval);
                   }
                 }, 8000);
               }

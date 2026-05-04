@@ -17,14 +17,28 @@ export async function onRequestPost({ request, env }) {
         watch_time_seconds INTEGER DEFAULT 0,
         ip TEXT,
         country TEXT,
-        timestamp TEXT
+        timestamp TEXT,
+        UNIQUE(session_id, video_id)
       )
     `).run();
 
+    // UPSERT: Update existing row or insert new one (keeps the highest watch time)
     await env.DB.prepare(`
       INSERT INTO video_views (session_id, video_id, video_title, watch_time_seconds, ip, country, timestamp)
       VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).bind(session_id, video_id, video_title, Math.round(watch_time_seconds || 0), ip, country, now).run();
+      ON CONFLICT(session_id, video_id) 
+      DO UPDATE SET 
+        watch_time_seconds = MAX(video_views.watch_time_seconds, excluded.watch_time_seconds),
+        timestamp = excluded.timestamp
+    `).bind(
+      session_id, 
+      video_id, 
+      video_title, 
+      Math.round(watch_time_seconds || 0), 
+      ip, 
+      country, 
+      now
+    ).run();
 
     return new Response('Video logged', { status: 200 });
   } catch (err) {

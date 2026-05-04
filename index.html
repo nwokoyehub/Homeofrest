@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
- 
-  <!-- SEO -->
   <title>Home of Rest • Deep Sleep Music, 528Hz Healing Frequencies & Relaxation</title>
   <meta name="description" content="Sonic therapy with 432Hz, 528Hz & 396Hz healing frequencies. Deep sleep, meditation, emotional release and inner peace.">
   <style>
@@ -38,13 +36,11 @@
     </nav>
   </header>
 
-  <!-- HERO -->
   <div class="hero">
     <h1>Sonic Therapy for Relaxation</h1>
     <p style="font-size:1.4rem; max-width:720px; margin:1rem auto;">432Hz • 528Hz • 396Hz • Insomnia Healing Frequencies & Heavy Rain</p>
   </div>
 
-  <!-- HEALING DESCRIPTION -->
   <div class="section" style="background:#111; text-align:center;">
     <p style="max-width:780px; margin:0 auto; font-size:1.15rem; line-height:1.7; opacity:0.95;">
       Home of Rest offers deeply soothing music infused with powerful healing frequencies — <strong>432Hz, 528Hz, 396Hz</strong>, and more.<br><br>
@@ -52,12 +48,10 @@
     </p>
   </div>
 
-  <!-- CATCHY CTA -->
   <div class="cta">
     <p><strong>Choose the video that matches your mood tonight.<br>Press play. Relax deeply. Enjoy the vibe.</strong></p>
   </div>
 
-  <!-- FEATURED TONIGHT -->
   <div class="section" id="featured">
     <h2>Featured Tonight</h2>
     <div class="grid">
@@ -76,7 +70,9 @@
     </div>
   </div>
 
-  <!-- DEEP SLEEP -->
+  <!-- (Keep the rest of your sections as they were - DEEP SLEEP, HEALING, NATURE, NEWSLETTER, FOOTER) -->
+  <!-- For brevity I kept only the main parts, but paste your full sections from the previous version -->
+
   <div class="section" id="deep-sleep" style="background:#111;">
     <h2>Deep Sleep Music</h2>
     <div class="grid">
@@ -91,7 +87,6 @@
     </div>
   </div>
 
-  <!-- HEALING FREQUENCIES -->
   <div class="section" id="healing">
     <h2>Healing Frequencies & Meditation</h2>
     <div class="grid">
@@ -106,7 +101,6 @@
     </div>
   </div>
 
-  <!-- NATURE SOUNDS -->
   <div class="section" id="nature" style="background:#111;">
     <h2>Nature Sounds & Ambient Relaxation</h2>
     <div class="grid">
@@ -117,18 +111,14 @@
     </div>
   </div>
 
-  <!-- NEWSLETTER -->
+  <!-- NEWSLETTER (unchanged) -->
   <div class="section" style="background:#111; text-align:center; padding:4rem 1rem;" id="newsletter">
     <h2 style="color:#a0d8ff;">Stay in Deep Rest</h2>
     <p style="max-width:520px; margin:0 auto 2rem; font-size:1.1rem;">Get new sleep stories, 528Hz releases, nightly reminders & gentle tips delivered to your inbox.</p>
    
     <form id="subscribeForm" action="/subscribe" method="POST" style="max-width:420px; margin:0 auto; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-      <input type="email" name="email" id="emailInput" placeholder="your@email.com" required 
-             style="flex:1; min-width:240px; padding:18px 20px; border:none; border-radius:50px; background:#1a1a1a; color:#e0e0e0; font-size:1.1rem;">
-      <button type="submit" 
-              style="padding:18px 36px; background:#a0d8ff; color:#0a0a0a; border:none; border-radius:50px; font-weight:600; font-size:1.1rem; cursor:pointer;">
-        Subscribe 🛌
-      </button>
+      <input type="email" name="email" id="emailInput" placeholder="your@email.com" required style="flex:1; min-width:240px; padding:18px 20px; border:none; border-radius:50px; background:#1a1a1a; color:#e0e0e0; font-size:1.1rem;">
+      <button type="submit" style="padding:18px 36px; background:#a0d8ff; color:#0a0a0a; border:none; border-radius:50px; font-weight:600; font-size:1.1rem; cursor:pointer;">Subscribe 🛌</button>
     </form>
 
     <div id="successMessage" style="display:none; color:#a0d8ff; font-size:1.3rem; margin-top:20px;">
@@ -144,13 +134,12 @@
     <p style="margin-top:0.5rem;">Sweet dreams 🛌💤</p>
   </footer>
 
-  <!-- IMPROVED CONTINUOUS VIDEO TRACKING -->
+  <!-- CLEAN CONTINUOUS VIDEO TRACKING -->
   <script>
     let sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-    console.log('%c[DEBUG] Session started:', 'color:#a0d8ff', sessionId);
 
     async function logVideo(videoId, videoTitle, watchTime) {
-      console.log('%c[VIDEO LOGGED]', 'color:#a0d8ff;font-weight:bold', videoTitle, '—', watchTime + ' seconds');
+      console.log('%c[VIDEO LOGGED]', 'color:#a0d8ff;font-weight:bold', videoTitle, '—', watchTime + 's');
       try {
         await fetch('/log-video', {
           method: 'POST',
@@ -166,7 +155,6 @@
       } catch (e) {}
     }
 
-    // Force enablejsapi=1 on all YouTube iframes
     document.querySelectorAll('iframe[src*="youtube.com"]').forEach(iframe => {
       let src = iframe.src;
       if (src.indexOf('enablejsapi') === -1) {
@@ -175,42 +163,32 @@
       }
     });
 
-    // Load YouTube API
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.head.appendChild(tag);
 
     window.onYouTubeIframeAPIReady = function() {
-      console.log('%c[DEBUG] YouTube IFrame API Ready', 'color:#a0d8ff');
-
       document.querySelectorAll('iframe[src*="youtube.com"]').forEach(iframe => {
         const videoId = iframe.src.split('/embed/')[1]?.split('?')[0] || 'unknown';
         const titleEl = iframe.closest('.video-card')?.querySelector('p');
         const videoTitle = titleEl ? titleEl.textContent.trim() : 'Unknown Video';
 
-        const player = new YT.Player(iframe, {
+        new YT.Player(iframe, {
           events: {
             'onStateChange': (event) => {
               if (event.data === YT.PlayerState.PLAYING) {
-                console.log('%c[DEBUG] Video STARTED PLAYING →', 'color:#a0d8ff', videoTitle);
-
-                // Log every 8 seconds while the video is playing
                 const interval = setInterval(() => {
-                  if (player.getPlayerState && player.getPlayerState() === YT.PlayerState.PLAYING) {
-                    const currentTime = Math.round(player.getCurrentTime());
+                  if (event.target.getPlayerState() === YT.PlayerState.PLAYING) {
+                    const currentTime = Math.round(event.target.getCurrentTime());
                     logVideo(videoId, videoTitle, currentTime);
-                  } else {
-                    clearInterval(interval);
                   }
-                }, 8000);
+                }, 15000); // every 15 seconds
               }
             }
           }
         });
       });
     };
-
-    console.log('%c[DEBUG] Tracking script fully loaded', 'color:#a0d8ff');
   </script>
 </body>
 </html>

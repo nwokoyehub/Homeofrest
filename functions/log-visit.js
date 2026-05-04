@@ -22,10 +22,9 @@ export async function onRequestPost({ request, env }) {
     `).run();
 
     if (duration === undefined || duration === null) {
-      // First visit
+      // First visit - create record
       await env.DB.prepare(`
-        INSERT OR REPLACE INTO access_logs 
-        (session_id, ip, country, referer, start_time, last_updated)
+        INSERT INTO access_logs (session_id, ip, country, referer, start_time, last_updated)
         VALUES (?, ?, ?, ?, ?, ?)
       `).bind(session_id, ip, country, referer, now, now).run();
     } else {
@@ -40,6 +39,6 @@ export async function onRequestPost({ request, env }) {
     return new Response('Logged', { status: 200 });
   } catch (err) {
     console.error('log-visit error:', err);
-    return new Response('Error', { status: 500 });
+    return new Response('Error: ' + err.message, { status: 500 });
   }
 }

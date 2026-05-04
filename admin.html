@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home of Rest • Admin Portal</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+      background: #0a0a0a; 
+      color: #e0e0e0; 
+      line-height: 1.5; 
+    }
+
+    header { 
+      background: #111; 
+      padding: 1rem 2rem; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: #a0d8ff; }
+    .stats-bar { display: flex; gap: 2rem; font-size: 0.9rem; }
+    .stat-item { text-align: center; }
+    .stat-value { font-size: 1.4rem; font-weight: 600; color: #a0d8ff; }
+    .stat-label { color: #888; font-size: 0.75rem; text-transform: uppercase; }
+
+    .nav-tabs { 
+      display: flex; 
+      background: #111; 
+      border-bottom: 1px solid #222; 
+      padding: 0 2rem;
+    }
+    .nav-tab { 
+      padding: 1rem 1.5rem; 
+      cursor: pointer; 
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      color: #888;
+    }
+    .nav-tab:hover { color: #e0e0e0; }
+    .nav-tab.active { 
+      color: #a0d8ff; 
+      border-bottom-color: #a0d8ff; 
+    }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+
+    .filters { 
+      display: flex; 
+      gap: 1rem; 
+      margin-bottom: 1.5rem; 
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-group { display: flex; align-items: center; gap: 0.5rem; }
+    .filter-group label { color: #888; font-size: 0.85rem; }
+    input, select {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #e0e0e0;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    input:focus, select:focus { outline: none; border-color: #a0d8ff; }
+    button {
+      background: #a0d8ff;
+      color: #0a0a0a;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.85; }
+    button.secondary {
+      background: #1a1a1a;
+      color: #e0e0e0;
+      border: 1px solid #333;
+    }
+    button.secondary:hover { background: #222; }
+
+    .table-wrapper { 
+      background: #111; 
+      border-radius: 12px; 
+      overflow: hidden;
+      border: 1px solid #222;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th { 
+      background: #1a1a1a; 
+      padding: 0.75rem 1rem; 
+      text-align: left; 
+      color: #a0d8ff;
+      font-weight: 600;
+      border-bottom: 1px solid #222;
+      white-space: nowrap;
+    }
+    td { 
+      padding: 0.75rem 1rem; 
+      border-bottom: 1px solid #1a1a1a;
+      color: #ccc;
+    }
+    tr:hover td { background: #1a1a1a; }
+    tr:last-child td { border-bottom: none; }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-country { background: #1a3a4a; color: #a0d8ff; }
+    .badge-duration { background: #1a4a3a; color: #7dd87d; }
+    .badge-video { background: #3a1a4a; color: #d8a0ff; }
+    .badge-time { background: #2a2a2a; color: #aaa; }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      border-top: 1px solid #222;
+    }
+    .page-btn {
+      padding: 0.4rem 0.8rem;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #e0e0e0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .page-btn:hover { background: #222; }
+    .page-btn.active { background: #a0d8ff; color: #0a0a0a; border-color: #a0d8ff; }
+    .page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .chart-card {
+      background: #111;
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid #222;
+    }
+    .chart-card h3 {
+      color: #a0d8ff;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .chart-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .chart-label {
+      width: 100px;
+      font-size: 0.8rem;
+      color: #888;
+      text-align: right;
+      padding-right: 0.75rem;
+    }
+    .chart-track {
+      flex: 1;
+      background: #1a1a1a;
+      border-radius: 4px;
+      height: 24px;
+      overflow: hidden;
+    }
+    .chart-fill {
+      height: 100%;
+      background: #a0d8ff;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 0.5rem;
+      font-size: 0.7rem;
+      color: #0a0a0a;
+      font-weight: 600;
+    }
+    .chart-value {
+      width: 50px;
+      font-size: 0.8rem;
+      color: #ccc;
+      padding-left: 0.5rem;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: #888;
+    }
+    .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #333;
+      border-top-color: #a0d8ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 0.5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .stats-bar { display: none; }
+      .charts-grid { grid-template-columns: 1fr; }
+      .filters { flex-direction: column; align-items: stretch; }
+      table { font-size: 0.75rem; }
+      th, td { padding: 0.5rem; }
+    }
+  </style>
+<base target="_blank">
+</head>
+<body>
+
+  <header>
+    <div class="logo">🛌 Home of Rest • Admin</div>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-value" id="totalVisits">-</div>
+        <div class="stat-label">Total Visits</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="totalVideos">-</div>
+        <div class="stat-label">Video Views</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="avgDuration">-</div>
+        <div class="stat-label">Avg Duration</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="todayVisits">-</div>
+        <div class="stat-label">Today</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-tabs">
+    <div class="nav-tab active" data-tab="overview">📊 Overview</div>
+    <div class="nav-tab" data-tab="access">🌐 Access Logs</div>
+    <div class="nav-tab" data-tab="videos">🎬 Video Logs</div>
+    <div class="nav-tab" data-tab="analytics">📈 Analytics</div>
+  </div>
+
+  <div class="container">
+
+    <div class="tab-content active" id="tab-overview">
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>🌍 Top Countries</h3>
+          <div id="countriesChart"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+        </div>
+        <div class="chart-card">
+          <h3>🎬 Most Watched Videos</h3>
+          <div id="videosChart"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+        </div>
+        <div class="chart-card">
+          <h3>⏱️ Visit Duration Distribution</h3>
+          <div id="durationChart"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+        </div>
+        <div class="chart-card">
+          <h3>📅 Visits by Hour (Last 24h)</h3>
+          <div id="hourlyChart"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-access">
+      <div class="filters">
+        <div class="filter-group">
+          <label>Search:</label>
+          <input type="text" id="accessSearch" placeholder="IP, country, session..." style="width: 200px;">
+        </div>
+        <div class="filter-group">
+          <label>From:</label>
+          <input type="date" id="accessFrom">
+        </div>
+        <div class="filter-group">
+          <label>To:</label>
+          <input type="date" id="accessTo">
+        </div>
+        <div class="filter-group">
+          <label>Min Duration:</label>
+          <select id="accessMinDuration">
+            <option value="0">All</option>
+            <option value="60">1+ min</option>
+            <option value="300">5+ min</option>
+            <option value="600">10+ min</option>
+          </select>
+        </div>
+        <button onclick="loadAccessLogs()">🔍 Filter</button>
+        <button class="secondary" onclick="exportAccessCSV()">📥 Export CSV</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Session</th>
+              <th>IP Address</th>
+              <th>Country</th>
+              <th>Referer</th>
+              <th>Duration</th>
+              <th>Start Time</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody id="accessTableBody">
+            <tr><td colspan="8" class="loading"><div class="spinner"></div> Loading access logs...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination" id="accessPagination"></div>
+    </div>
+
+    <div class="tab-content" id="tab-videos">
+      <div class="filters">
+        <div class="filter-group">
+          <label>Search:</label>
+          <input type="text" id="videoSearch" placeholder="Video title, ID..." style="width: 200px;">
+        </div>
+        <div class="filter-group">
+          <label>From:</label>
+          <input type="date" id="videoFrom">
+        </div>
+        <div class="filter-group">
+          <label>To:</label>
+          <input type="date" id="videoTo">
+        </div>
+        <div class="filter-group">
+          <label>Min Watch Time:</label>
+          <select id="videoMinTime">
+            <option value="0">All</option>
+            <option value="60">1+ min</option>
+            <option value="300">5+ min</option>
+            <option value="600">10+ min</option>
+          </select>
+        </div>
+        <button onclick="loadVideoLogs()">🔍 Filter</button>
+        <button class="secondary" onclick="exportVideoCSV()">📥 Export CSV</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Session</th>
+              <th>Video ID</th>
+              <th>Video Title</th>
+              <th>Watch Time</th>
+              <th>IP</th>
+              <th>Country</th>
+              <th>Referer</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="videoTableBody">
+            <tr><td colspan="9" class="loading"><div class="spinner"></div> Loading video logs...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination" id="videoPagination"></div>
+    </div>
+
+    <div class="tab-content" id="tab-analytics">
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>📊 Daily Visits (Last 7 Days)</h3>
+          <div id="dailyVisitsChart"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+        </div>
+        <div class="chart-card">
+          <h3>🎬 Video Performance</h3>
+          <div id="videoPerformanceChart"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+        </div>
+        <div class="chart-card">
+          <h3>🌐 Traffic Sources</h3>
+          <div id="refererChart"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+        </div>
+        <div class="chart-card">
+          <h3>⏰ Peak Hours</h3>
+          <div id="peakHoursChart"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const ITEMS_PER_PAGE = 25;
+    let accessData = [];
+    let videoData = [];
+    let currentAccessPage = 1;
+    let currentVideoPage = 1;
+
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+
+        if (tab.dataset.tab === 'access') loadAccessLogs();
+        if (tab.dataset.tab === 'videos') loadVideoLogs();
+        if (tab.dataset.tab === 'overview') loadOverview();
+        if (tab.dataset.tab === 'analytics') loadAnalytics();
+      });
+    });
+
+    async function loadOverview() {
+      try {
+        const [accessRes, videoRes] = await Promise.all([
+          fetch('/api/access-logs?limit=10000'),
+          fetch('/api/video-logs?limit=10000')
+        ]);
+
+        accessData = await accessRes.json();
+        videoData = await videoRes.json();
+
+        updateStats();
+        renderCountriesChart();
+        renderVideosChart();
+        renderDurationChart();
+        renderHourlyChart();
+      } catch (e) {
+        console.error('Overview load error:', e);
+      }
+    }
+
+    function updateStats() {
+      document.getElementById('totalVisits').textContent = accessData.length.toLocaleString();
+      document.getElementById('totalVideos').textContent = videoData.length.toLocaleString();
+
+      const avgDur = accessData.length > 0 
+        ? Math.round(accessData.reduce((a, b) => a + (b.duration || 0), 0) / accessData.length) 
+        : 0;
+      document.getElementById('avgDuration').textContent = formatDuration(avgDur);
+
+      const today = new Date().toISOString().split('T')[0];
+      const todayCount = accessData.filter(r => r.start_time && r.start_time.startsWith(today)).length;
+      document.getElementById('todayVisits').textContent = todayCount.toLocaleString();
+    }
+
+    function renderCountriesChart() {
+      const countries = {};
+      accessData.forEach(r => { countries[r.country || 'Unknown'] = (countries[r.country || 'Unknown'] || 0) + 1; });
+      const sorted = Object.entries(countries).sort((a, b) => b[1] - a[1]).slice(0, 8);
+      const max = Math.max(...sorted.map(s => s[1]), 1);
+
+      document.getElementById('countriesChart').innerHTML = sorted.map(([country, count]) => `
+        <div class="chart-bar">
+          <div class="chart-label">${country}</div>
+          <div class="chart-track">
+            <div class="chart-fill" style="width: ${(count / max * 100).toFixed(1)}%">${count}</div>
+          </div>
+          <div class="chart-value">${count}</div>
+        </div>
+      `).join('') || '<div class="empty-state">No data yet</div>';
+    }
+
+    function renderVideosChart() {
+      const videos = {};
+      videoData.forEach(r => { 
+        const title = r.video_title || 'Unknown';
+        videos[title] = (videos[title] || 0) + 1; 
+      });
+      const sorted = Object.entries(videos).sort((a, b) => b[1] - a[1]).slice(0, 8);
+      const max = Math.max(...sorted.map(s => s[1]), 1);
+
+      document.getElementById('videosChart').innerHTML = sorted.map(([title, count]) => `
+        <div class="chart-bar">
+          <div class="chart-label" style="width: 140px; font-size: 0.7rem; overflow: hidden; text-overflow: ellipsis;">${title.substring(0, 25)}</div>
+          <div class="chart-track">
+            <div class="chart-fill" style="width: ${(count / max * 100).toFixed(1)}%; background: #d8a0ff;">${count}</div>
+          </div>
+          <div class="chart-value">${count}</div>
+        </div>
+      `).join('') || '<div class="empty-state">No data yet</div>';
+    }
+
+    function renderDurationChart() {
+      const bins = { '0-1m': 0, '1-5m': 0, '5-15m': 0, '15-30m': 0, '30m+': 0 };
+      accessData.forEach(r => {
+        const d = r.duration || 0;
+        if (d < 60) bins['0-1m']++;
+        else if (d < 300) bins['1-5m']++;
+        else if (d < 900) bins['5-15m']++;
+        else if (d < 1800) bins['15-30m']++;
+        else bins['30m+']++;
+      });
+      const max = Math.max(...Object.values(bins), 1);
+
+      document.getElementById('durationChart').innerHTML = Object.entries(bins).map(([label, count]) => `
+        <div class="chart-bar">
+          <div class="chart-label">${label}</div>
+          <div class="chart-track">
+            <div class="chart-fill" style="width: ${(count / max * 100).toFixed(1)}%; background: #7dd87d;">${count || ''}</div>
+          </div>
+          <div class="chart-value">${count}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderHourlyChart() {
+      const hours = Array(24).fill(0);
+      const now = Date.now();
+      accessData.forEach(r => {
+        if (!r.start_time) return;
+        const d = new Date(r.start_time);
+        if (now - d.getTime() < 86400000) {
+          hours[d.getHours()]++;
+        }
+      });
+      const max = Math.max(...hours, 1);
+
+      document.getElementById('hourlyChart').innerHTML = hours.map((count, h) => `
+        <div class="chart-bar">
+          <div class="chart-label" style="width: 40px;">${h}:00</div>
+          <div class="chart-track">
+            <div class="chart-fill" style="width: ${(count / max * 100).toFixed(1)}%; background: #ffaa5c;">${count || ''}</div>
+          </div>
+          <div class="chart-value">${count}</div>
+        </div>
+      `).join('');
+    }
+
+    async function loadAccessLogs() {
+      try {
+        const search = document.getElementById('accessSearch').value.toLowerCase();
+        const from = document.getElementById('accessFrom').value;
+        const to = document.getElementById('accessTo').value;
+        const minDur = parseInt(document.getElementById('accessMinDuration').value);
+
+        const res = await fetch('/api/access-logs?limit=10000');
+        let data = await res.json();
+
+        data = data.filter(r => {
+          if (search && !((r.session_id || '').toLowerCase().includes(search) || 
+              (r.ip || '').includes(search) || 
+              (r.country || '').toLowerCase().includes(search))) return false;
+          if (from && r.start_time && r.start_time < from) return false;
+          if (to && r.start_time && r.start_time > to + 'T23:59:59') return false;
+          if (minDur && (r.duration || 0) < minDur) return false;
+          return true;
+        });
+
+        accessData = data;
+        renderAccessTable();
+      } catch (e) {
+        console.error('Access logs error:', e);
+        document.getElementById('accessTableBody').innerHTML = '<tr><td colspan="8" class="empty-state">Error loading data</td></tr>';
+      }
+    }
+
+    function renderAccessTable() {
+      const start = (currentAccessPage - 1) * ITEMS_PER_PAGE;
+      const pageData = accessData.slice(start, start + ITEMS_PER_PAGE);
+      const totalPages = Math.ceil(accessData.length / ITEMS_PER_PAGE);
+
+      document.getElementById('accessTableBody').innerHTML = pageData.length === 0 
+        ? '<tr><td colspan="8" class="empty-state">No access logs found</td></tr>'
+        : pageData.map(r => `
+          <tr>
+            <td>${r.id}</td>
+            <td><code style="background:#1a1a1a;padding:2px 6px;border-radius:3px;font-size:0.75rem;">${(r.session_id || '').substring(0, 20)}...</code></td>
+            <td>${r.ip || 'unknown'}</td>
+            <td><span class="badge badge-country">${r.country || 'Unknown'}</span></td>
+            <td>${r.referer || 'direct'}</td>
+            <td><span class="badge badge-duration">${formatDuration(r.duration || 0)}</span></td>
+            <td><span class="badge badge-time">${formatDateTime(r.start_time)}</span></td>
+            <td><span class="badge badge-time">${formatDateTime(r.last_updated)}</span></td>
+          </tr>
+        `).join('');
+
+      renderPagination('accessPagination', totalPages, currentAccessPage, (p) => { currentAccessPage = p; renderAccessTable(); });
+    }
+
+    async function loadVideoLogs() {
+      try {
+        const search = document.getElementById('videoSearch').value.toLowerCase();
+        const from = document.getElementById('videoFrom').value;
+        const to = document.getElementById('videoTo').value;
+        const minTime = parseInt(document.getElementById('videoMinTime').value);
+
+        const res = await fetch('/api/video-logs?limit=10000');
+        let data = await res.json();
+
+        data = data.filter(r => {
+          if (search && !((r.video_title || '').toLowerCase().includes(search) || 
+              (r.video_id || '').includes(search))) return false;
+          if (from && r.timestamp && r.timestamp < from) return false;
+          if (to && r.timestamp && r.timestamp > to + 'T23:59:59') return false;
+          if (minTime && (r.watch_time_seconds || 0) < minTime) return false;
+          return true;
+        });
+
+        videoData = data;
+        renderVideoTable();
+      } catch (e) {
+        console.error('Video logs error:', e);
+        document.getElementById('videoTableBody').innerHTML = '<tr><td colspan="9" class="empty-state">Error loading data</td></tr>';
+      }
+    }
+
+    function renderVideoTable() {
+      const start = (currentVideoPage - 1) * ITEMS_PER_PAGE;
+      const pageData = videoData.slice(start, start + ITEMS_PER_PAGE);
+      const totalPages = Math.ceil(videoData.length / ITEMS_PER_PAGE);
+
+      document.getElementById('videoTableBody').innerHTML = pageData.length === 0
+        ? '<tr><td colspan="9" class="empty-state">No video logs found</td></tr>'
+        : pageData.map(r => `
+          <tr>
+            <td>${r.id}</td>
+            <td><code style="background:#1a1a1a;padding:2px 6px;border-radius:3px;font-size:0.75rem;">${(r.session_id || '').substring(0, 20)}...</code></td>
+            <td><a href="https://youtube.com/watch?v=${r.video_id}" target="_blank" style="color:#a0d8ff;">${r.video_id}</a></td>
+            <td>${r.video_title || 'Unknown'}</td>
+            <td><span class="badge badge-duration">${formatDuration(r.watch_time_seconds || 0)}</span></td>
+            <td>${r.ip || 'unknown'}</td>
+            <td><span class="badge badge-country">${r.country || 'Unknown'}</span></td>
+            <td>${r.referer || 'direct'}</td>
+            <td><span class="badge badge-time">${formatDateTime(r.timestamp)}</span></td>
+          </tr>
+        `).join('');
+
+      renderPagination('videoPagination', totalPages, currentVideoPage, (p) => { currentVideoPage = p; renderVideoTable(); });
+    }
+
+    async function loadAnalytics() {
+      await loadOverview();
+      renderDailyVisitsChart();
+      renderVideoPerformanceChart();
+      renderRefererChart();
+      renderPeakHoursChart();
+    }
+
+    function renderDailyVisitsChart() {
+      const days = {};
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        days[d.toISOString().split('T')[0]] = 0;
+      }
+      accessData.forEach(r => {
+        if (!r.start_time) return;
+        const day = r.start_time.split('T')[0];
+        if (days.hasOwnProperty(day)) days[day]++;
+      });
+      const max = Math.max(...Object.values(days), 1);
+
+      document.getElementById('dailyVisitsChart').innerHTML = Object.entries(days).map(([day, count]) => `
+        <div class="chart-bar">
+          <div class="chart-label" style="width: 80px;">${day.slice(5)}</div>
+          <div class="chart-track">
+            <div class="chart-fill" style="width: ${(count / max * 100).toFixed(1)}%; background: #5cdbd3;">${count || ''}</div>
+          </div>
+          <div class="chart-value">${count}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderVideoPerformanceChart() {
+      const videos = {};
+      videoData.forEach(r => {
+        const id = r.video_id || 'unknown';
+        if (!videos[id]) videos[id] = { title: r.video_title || 'Unknown', views: 0, totalTime: 0 };
+        videos[id].views++;
+        videos[id].totalTime += (r.watch_time_seconds || 0);
+      });
+      const sorted = Object.entries(videos).sort((a, b) => b[1].views - a[1].views).slice(0, 6);
+      const max = Math.max(...sorted.map(s => s[1].views), 1);
+
+      document.getElementById('videoPerformanceChart').innerHTML = sorted.map(([id, data]) => `
+        <div class="chart-bar">
+          <div class="chart-label" style="width: 140px; font-size: 0.7rem; overflow: hidden; text-overflow: ellipsis;">${data.title.substring(0, 25)}</div>
+          <div class="chart-track">
+            <div class="chart-fill" style="width: ${(data.views / max * 100).toFixed(1)}%; background: #d8a0ff;">${data.views}</div>
+          </div>
+          <div class="chart-value">${formatDuration(data.totalTime)}</div>
+        </div>
+      `).join('') || '<div class="empty-state">No data yet</div>';
+    }
+
+    function renderRefererChart() {
+      const refs = {};
+      accessData.forEach(r => { refs[r.referer || 'direct'] = (refs[r.referer || 'direct'] || 0) + 1; });
+      const sorted = Object.entries(refs).sort((a, b) => b[1] - a[1]).slice(0, 6);
+      const max = Math.max(...sorted.map(s => s[1]), 1);
+
+      document.getElementById('refererChart').innerHTML = sorted.map(([ref, count]) => `
+        <div class="chart-bar">
+          <div class="chart-label" style="width: 100px; font-size: 0.75rem; overflow: hidden; text-overflow: ellipsis;">${ref.substring(0, 20)}</div>
+          <div class="chart-track">
+            <div class="chart-fill" style="width: ${(count / max * 100).toFixed(1)}%; background: #ff7d7d;">${count}</div>
+          </div>
+          <div class="chart-value">${count}</div>
+        </div>
+      `).join('') || '<div class="empty-state">No data yet</div>';
+    }
+
+    function renderPeakHoursChart() {
+      const hours = Array(24).fill(0);
+      accessData.forEach(r => {
+        if (!r.start_time) return;
+        hours[new Date(r.start_time).getHours()]++;
+      });
+      const max = Math.max(...hours, 1);
+
+      document.getElementById('peakHoursChart').innerHTML = hours.map((count, h) => `
+        <div class="chart-bar">
+          <div class="chart-label" style="width: 40px;">${h}:00</div>
+          <div class="chart-track">
+            <div class="chart-fill" style="width: ${(count / max * 100).toFixed(1)}%; background: #ffd666;">${count || ''}</div>
+          </div>
+          <div class="chart-value">${count}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderPagination(containerId, totalPages, current, callback) {
+      if (totalPages <= 1) {
+        document.getElementById(containerId).innerHTML = '';
+        return;
+      }
+
+      let html = `<button class="page-btn" ${current === 1 ? 'disabled' : ''} onclick="goToAccessPage(${current - 1})">← Prev</button>`;
+
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= current - 2 && i <= current + 2)) {
+          html += `<button class="page-btn ${i === current ? 'active' : ''}" onclick="goToAccessPage(${i})">${i}</button>`;
+        } else if (i === current - 3 || i === current + 3) {
+          html += `<span style="color:#666;padding:0.4rem;">...</span>`;
+        }
+      }
+
+      html += `<button class="page-btn" ${current === totalPages ? 'disabled' : ''} onclick="goToAccessPage(${current + 1})">Next →</button>`;
+      document.getElementById(containerId).innerHTML = html;
+    }
+
+    function goToAccessPage(p) {
+      currentAccessPage = p;
+      renderAccessTable();
+    }
+
+    function goToVideoPage(p) {
+      currentVideoPage = p;
+      renderVideoTable();
+    }
+
+    function exportAccessCSV() {
+      const headers = ['ID', 'Session ID', 'IP', 'Country', 'Referer', 'Duration (s)', 'Start Time', 'Last Updated'];
+      const rows = accessData.map(r => [
+        r.id, r.session_id, r.ip, r.country, r.referer, r.duration, r.start_time, r.last_updated
+      ]);
+      downloadCSV('access-logs.csv', [headers, ...rows]);
+    }
+
+    function exportVideoCSV() {
+      const headers = ['ID', 'Session ID', 'Video ID', 'Video Title', 'Watch Time (s)', 'IP', 'Country', 'Referer', 'Timestamp'];
+      const rows = videoData.map(r => [
+        r.id, r.session_id, r.video_id, r.video_title, r.watch_time_seconds, r.ip, r.country, r.referer, r.timestamp
+      ]);
+      downloadCSV('video-logs.csv', [headers, ...rows]);
+    }
+
+    function downloadCSV(filename, rows) {
+      const csv = rows.map(r => r.map(c => `"${(c || '').toString().replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function formatDuration(seconds) {
+      if (!seconds || seconds < 1) return '0s';
+      const h = Math.floor(seconds / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = seconds % 60;
+      if (h > 0) return `${h}h ${m}m`;
+      if (m > 0) return `${m}m ${s}s`;
+      return `${s}s`;
+    }
+
+    function formatDateTime(iso) {
+      if (!iso) return '-';
+      const d = new Date(iso);
+      return d.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadOverview();
+    });
+  </script>
+
+</body>
+</html>

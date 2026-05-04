@@ -1,0 +1,7 @@
+name = "home-of-rest"
+compatibility_date = "2026-05-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "homeofrest-db"
+database_id = "294b5ec5-b3a6-48a6-bb49-5b03ba6489d0"

@@ -8,7 +8,6 @@ export async function onRequestPost({ request, env }) {
     const referer = request.headers.get('referer') || 'direct';
     const now = new Date().toISOString();
 
-    // Create table if it doesn't exist
     await env.DB.prepare(`
       CREATE TABLE IF NOT EXISTS access_logs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,14 +22,14 @@ export async function onRequestPost({ request, env }) {
     `).run();
 
     if (duration === undefined || duration === null) {
-      // First visit - create or replace record
+      // First visit
       await env.DB.prepare(`
         INSERT OR REPLACE INTO access_logs 
         (session_id, ip, country, referer, start_time, last_updated)
         VALUES (?, ?, ?, ?, ?, ?)
       `).bind(session_id, ip, country, referer, now, now).run();
     } else {
-      // Update duration when visitor leaves
+      // Update duration
       await env.DB.prepare(`
         UPDATE access_logs 
         SET duration = ?, last_updated = ?
@@ -41,6 +40,6 @@ export async function onRequestPost({ request, env }) {
     return new Response('Logged', { status: 200 });
   } catch (err) {
     console.error('log-visit error:', err);
-    return new Response('Error: ' + err.message, { status: 500 });
+    return new Response('Error', { status: 500 });
   }
 }

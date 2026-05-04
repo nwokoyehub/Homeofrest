@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Logs • Home of Rest</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background:#0a0a0a; color:#e0e0e0; margin:0; padding:20px; }
+    h1 { color:#a0d8ff; text-align:center; }
+    table { width:100%; border-collapse:collapse; margin:20px 0; background:#111; }
+    th, td { padding:12px; text-align:left; border-bottom:1px solid #333; }
+    th { background:#1a1a1a; color:#a0d8ff; }
+    tr:hover { background:#222; }
+    .tab { display:flex; gap:10px; margin-bottom:20px; justify-content:center; }
+    .tab button { padding:12px 24px; background:#1a1a1a; color:#fff; border:none; border-radius:50px; cursor:pointer; }
+    .tab button.active { background:#a0d8ff; color:#0a0a0a; }
+    .container { max-width:1200px; margin:0 auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Home of Rest - Access & Video Logs</h1>
+    
+    <div class="tab">
+      <button onclick="showTab(0)" class="active" id="tab0">Access Logs</button>
+      <button onclick="showTab(1)" id="tab1">Video Views</button>
+    </div>
+
+    <div id="content0">
+      <table id="accessTable"><thead><tr><th>ID</th><th>Session</th><th>IP</th><th>Country</th><th>Referer</th><th>Start Time</th><th>Duration (sec)</th></tr></thead><tbody></tbody></table>
+    </div>
+
+    <div id="content1" style="display:none;">
+      <table id="videoTable"><thead><tr><th>ID</th><th>Session</th><th>Video Title</th><th>Watch Time (sec)</th><th>IP</th><th>Country</th><th>Referer</th><th>Timestamp</th></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+
+  <script>
+    async function loadLogs() {
+      const res = await fetch('/admin-logs');
+      const data = await res.json();
+
+      // Access Logs
+      const accessBody = document.querySelector('#accessTable tbody');
+      accessBody.innerHTML = data.access_logs.map(row => `
+        <tr>
+          <td>${row.id}</td>
+          <td>${row.session_id.substring(0,12)}...</td>
+          <td>${row.ip}</td>
+          <td>${row.country}</td>
+          <td>${row.referer || 'direct'}</td>
+          <td>${new Date(row.start_time).toLocaleString()}</td>
+          <td>${row.duration || 0}</td>
+        </tr>
+      `).join('');
+
+      // Video Views
+      const videoBody = document.querySelector('#videoTable tbody');
+      videoBody.innerHTML = data.video_views.map(row => `
+        <tr>
+          <td>${row.id}</td>
+          <td>${row.session_id.substring(0,12)}...</td>
+          <td>${row.video_title}</td>
+          <td><strong>${row.watch_time_seconds}</strong></td>
+          <td>${row.ip}</td>
+          <td>${row.country}</td>
+          <td>${row.referer || 'direct'}</td>
+          <td>${new Date(row.timestamp).toLocaleString()}</td>
+        </tr>
+      `).join('');
+    }
+
+    function showTab(n) {
+      document.getElementById('content0').style.display = n === 0 ? 'block' : 'none';
+      document.getElementById('content1').style.display = n === 1 ? 'block' : 'none';
+      document.querySelectorAll('.tab button').forEach((b,i) => b.classList.toggle('active', i===n));
+    }
+
+    // Load data when page opens
+    loadLogs();
+    // Refresh every 10 seconds
+    setInterval(loadLogs, 10000);
+  </script>
+</body>
+</html>

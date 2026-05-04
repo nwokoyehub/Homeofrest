@@ -131,9 +131,20 @@
     <p style="margin-top:0.5rem;">Sweet dreams 🛌💤</p>
   </footer>
 
-  <!-- Simple & Reliable Tracking -->
+  <!-- FIXED TRACKING - Both access log and video log -->
   <script>
     let sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+
+    async function logVisit(duration = null) {
+      try {
+        await fetch('/log-visit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_id: sessionId, duration: duration }),
+          keepalive: true
+        });
+      } catch (e) {}
+    }
 
     async function logVideo(videoId, videoTitle, watchTime) {
       try {
@@ -151,6 +162,7 @@
       } catch (e) {}
     }
 
+    // Enable YouTube API
     document.querySelectorAll('iframe[src*="youtube.com"]').forEach(iframe => {
       let src = iframe.src;
       if (src.indexOf('enablejsapi') === -1) {
@@ -185,6 +197,18 @@
         });
       });
     };
+
+    // Page visit logging
+    window.addEventListener('load', () => logVisit());
+    window.addEventListener('beforeunload', () => {
+      const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
+      logVisit(timeSpent);
+    });
+
+    setInterval(() => {
+      const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
+      logVisit(timeSpent);
+    }, 30000);
   </script>
 </body>
 </html>

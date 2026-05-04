@@ -8,7 +8,6 @@ export async function onRequestPost({ request, env }) {
     const referer = request.headers.get('referer') || 'direct';
     const now = new Date().toISOString();
 
-    // Create table if it doesn't exist
     await env.DB.prepare(`
       CREATE TABLE IF NOT EXISTS video_views (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,7 +23,6 @@ export async function onRequestPost({ request, env }) {
       )
     `).run();
 
-    // Simple and reliable UPSERT
     await env.DB.prepare(`
       INSERT INTO video_views (session_id, video_id, video_title, watch_time_seconds, ip, country, referer, timestamp)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -46,6 +44,6 @@ export async function onRequestPost({ request, env }) {
     return new Response('Video logged', { status: 200 });
   } catch (err) {
     console.error('log-video error:', err);
-    return new Response('Error: ' + err.message, { status: 500 });
+    return new Response('Error', { status: 500 });
   }
 }

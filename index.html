@@ -144,11 +144,11 @@
     <p style="margin-top:0.5rem;">Sweet dreams 🛌💤</p>
   </footer>
 
-  <!-- VISITOR + VIDEO TRACKING -->
+  <!-- IMPROVED VISITOR + VIDEO TRACKING WITH DEBUG -->
   <script>
     let sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    console.log('%c[DEBUG] Session started:', 'color:#a0d8ff', sessionId);
 
-    // Page visit logging (already working)
     async function logVisit(duration = null) {
       try {
         await fetch('/log-visit', {
@@ -157,11 +157,11 @@
           body: JSON.stringify({ session_id: sessionId, duration: duration }),
           keepalive: true
         });
-      } catch (e) {}
+      } catch (e) { console.error('[DEBUG] logVisit failed', e); }
     }
 
-    // Video watching logging
     async function logVideo(videoId, videoTitle, watchTime) {
+      console.log('%c[DEBUG] Video watched →', 'color:#a0d8ff', videoTitle, watchTime + 's');
       try {
         await fetch('/log-video', {
           method: 'POST',
@@ -174,25 +174,28 @@
           }),
           keepalive: true
         });
-      } catch (e) {}
+      } catch (e) { console.error('[DEBUG] logVideo failed', e); }
     }
 
-    // Load YouTube IFrame API for video tracking
+    // YouTube API
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.head.appendChild(tag);
 
     window.onYouTubeIframeAPIReady = function() {
+      console.log('%c[DEBUG] YouTube IFrame API Ready', 'color:#a0d8ff');
       document.querySelectorAll('iframe[src*="youtube.com"]').forEach(iframe => {
         const videoId = iframe.src.split('/embed/')[1]?.split('?')[0] || 'unknown';
         const titleEl = iframe.closest('.video-card')?.querySelector('p');
         const videoTitle = titleEl ? titleEl.textContent.trim() : 'Unknown Video';
 
+        console.log('%c[DEBUG] Initializing player for:', 'color:#a0d8ff', videoTitle);
+
         new YT.Player(iframe, {
           events: {
             'onStateChange': (event) => {
               if (event.data === YT.PlayerState.PLAYING) {
-                // Log every 10 seconds while playing
+                console.log('%c[DEBUG] Video PLAYING:', 'color:#a0d8ff', videoTitle);
                 setTimeout(() => {
                   if (event.target.getPlayerState() === YT.PlayerState.PLAYING) {
                     const currentTime = Math.round(event.target.getCurrentTime());
@@ -206,14 +209,17 @@
       });
     };
 
-    // Page load & time spent
-    window.addEventListener('load', () => logVisit());
+    // Page tracking
+    window.addEventListener('load', () => {
+      console.log('%c[DEBUG] Page loaded - logging visit', 'color:#a0d8ff');
+      logVisit();
+    });
+
     window.addEventListener('beforeunload', () => {
       const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
       logVisit(timeSpent);
     });
 
-    // Periodic update
     setInterval(() => {
       const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
       logVisit(timeSpent);

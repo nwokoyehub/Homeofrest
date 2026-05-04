@@ -26,6 +26,7 @@
   </style>
 </head>
 <body>
+
   <header>
     <div class="logo">Home of Rest 🛌</div>
     <nav>
@@ -130,17 +131,21 @@
     <p style="margin-top:0.5rem;">Sweet dreams 🛌💤</p>
   </footer>
 
-  <!-- CLEAN & RELIABLE TRACKING -->
+  <!-- Simple & Reliable Tracking -->
   <script>
     let sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
 
     async function logVideo(videoId, videoTitle, watchTime) {
-      console.log('%c[VIDEO LOGGED]', 'color:#a0d8ff;font-weight:bold', videoTitle, '—', watchTime + 's');
       try {
         await fetch('/log-video', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, video_id: videoId, video_title: videoTitle, watch_time_seconds: watchTime }),
+          body: JSON.stringify({
+            session_id: sessionId,
+            video_id: videoId,
+            video_title: videoTitle,
+            watch_time_seconds: watchTime
+          }),
           keepalive: true
         });
       } catch (e) {}

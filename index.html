@@ -144,24 +144,13 @@
     <p style="margin-top:0.5rem;">Sweet dreams 🛌💤</p>
   </footer>
 
-  <!-- IMPROVED VISITOR + VIDEO TRACKING WITH DEBUG -->
+  <!-- FIXED & IMPROVED VIDEO TRACKING -->
   <script>
     let sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
     console.log('%c[DEBUG] Session started:', 'color:#a0d8ff', sessionId);
 
-    async function logVisit(duration = null) {
-      try {
-        await fetch('/log-visit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, duration: duration }),
-          keepalive: true
-        });
-      } catch (e) { console.error('[DEBUG] logVisit failed', e); }
-    }
-
     async function logVideo(videoId, videoTitle, watchTime) {
-      console.log('%c[DEBUG] Video watched →', 'color:#a0d8ff', videoTitle, watchTime + 's');
+      console.log('%c[VIDEO LOGGED]', 'color:#a0d8ff;font-weight:bold', videoTitle, '—', watchTime + ' seconds');
       try {
         await fetch('/log-video', {
           method: 'POST',
@@ -174,10 +163,19 @@
           }),
           keepalive: true
         });
-      } catch (e) { console.error('[DEBUG] logVideo failed', e); }
+      } catch (e) { console.error('logVideo failed', e); }
     }
 
-    // YouTube API
+    // Force enablejsapi=1 on all YouTube iframes
+    document.querySelectorAll('iframe[src*="youtube.com"]').forEach(iframe => {
+      let src = iframe.src;
+      if (src.indexOf('enablejsapi') === -1) {
+        src += (src.indexOf('?') === -1 ? '?' : '&') + 'enablejsapi=1';
+        iframe.src = src;
+      }
+    });
+
+    // Load YouTube API
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.head.appendChild(tag);
@@ -189,19 +187,17 @@
         const titleEl = iframe.closest('.video-card')?.querySelector('p');
         const videoTitle = titleEl ? titleEl.textContent.trim() : 'Unknown Video';
 
-        console.log('%c[DEBUG] Initializing player for:', 'color:#a0d8ff', videoTitle);
-
         new YT.Player(iframe, {
           events: {
             'onStateChange': (event) => {
               if (event.data === YT.PlayerState.PLAYING) {
-                console.log('%c[DEBUG] Video PLAYING:', 'color:#a0d8ff', videoTitle);
+                console.log('%c[DEBUG] Video STARTED PLAYING →', 'color:#a0d8ff', videoTitle);
                 setTimeout(() => {
                   if (event.target.getPlayerState() === YT.PlayerState.PLAYING) {
                     const currentTime = Math.round(event.target.getCurrentTime());
                     logVideo(videoId, videoTitle, currentTime);
                   }
-                }, 10000);
+                }, 8000);
               }
             }
           }
@@ -209,21 +205,7 @@
       });
     };
 
-    // Page tracking
-    window.addEventListener('load', () => {
-      console.log('%c[DEBUG] Page loaded - logging visit', 'color:#a0d8ff');
-      logVisit();
-    });
-
-    window.addEventListener('beforeunload', () => {
-      const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
-      logVisit(timeSpent);
-    });
-
-    setInterval(() => {
-      const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
-      logVisit(timeSpent);
-    }, 30000);
+    console.log('%c[DEBUG] Tracking script fully loaded', 'color:#a0d8ff');
   </script>
 </body>
 </html>

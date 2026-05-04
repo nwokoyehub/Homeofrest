@@ -22,13 +22,11 @@ export async function onRequestPost({ request, env }) {
     `).run();
 
     if (duration === undefined || duration === null) {
-      // First visit - create record
       await env.DB.prepare(`
         INSERT INTO access_logs (session_id, ip, country, referer, start_time, last_updated)
         VALUES (?, ?, ?, ?, ?, ?)
       `).bind(session_id, ip, country, referer, now, now).run();
     } else {
-      // Update duration
       await env.DB.prepare(`
         UPDATE access_logs 
         SET duration = ?, last_updated = ?

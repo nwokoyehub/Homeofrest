@@ -1,4 +1,6 @@
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost(context) {
+  const { request, env } = context;
+
   try {
     const data = await request.json();
     const { session_id, video_id, video_title, watch_time_seconds } = data;
@@ -41,9 +43,25 @@ export async function onRequestPost({ request, env }) {
       now
     ).run();
 
-    return new Response('Video logged', { status: 200 });
+    return new Response('Video logged', { 
+      status: 200,
+      headers: { 'Access-Control-Allow-Origin': '*' }
+    });
   } catch (err) {
     console.error('log-video error:', err);
-    return new Response('Error: ' + err.message, { status: 500 });
+    return new Response('Error: ' + err.message, { 
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
+}
+
+export async function onRequestOptions() {
+  return new Response(null, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type'
+    }
+  });
 }

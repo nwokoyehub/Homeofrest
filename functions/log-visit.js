@@ -5,15 +5,16 @@ export async function onRequestPost({ request, env }) {
 
     const ip = request.headers.get('cf-connecting-ip') || 'unknown';
     const country = request.cf?.country || 'unknown';
+    const referer = request.headers.get('referer') || 'direct';
     const now = new Date().toISOString();
 
-    // Create table if it doesn't exist
     await env.DB.prepare(`
       CREATE TABLE IF NOT EXISTS access_logs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         session_id TEXT UNIQUE,
         ip TEXT,
         country TEXT,
+        referer TEXT DEFAULT 'direct',
         start_time TEXT,
         duration INTEGER DEFAULT 0,
         last_updated TEXT
@@ -21,13 +22,11 @@ export async function onRequestPost({ request, env }) {
     `).run();
 
     if (duration === undefined || duration === null) {
-      // First visit - create record
       await env.DB.prepare(`
-        INSERT OR REPLACE INTO access_logs (session_id, ip, country, start_time, last_updated)
-        VALUES (?, ?, ?, ?, ?)
-      `).bind(session_id, ip, country, now, now).run();
+        INSERT OR REPLACE INTO access_logs (session_id, ip, country, referer, start_time, last_updated)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `).bind(session_id, ip, country, referer, now, now).run();
     } else {
-      // Update duration when visitor leaves
       await env.DB.prepare(`
         UPDATE access_logs 
         SET duration = ?, last_updated = ?

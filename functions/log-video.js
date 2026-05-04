@@ -18,13 +18,18 @@ export async function onRequestPost({ request, env }) {
         ip TEXT,
         country TEXT,
         referer TEXT DEFAULT 'direct',
-        timestamp TEXT
+        timestamp TEXT,
+        UNIQUE(session_id, video_id)
       )
     `).run();
 
     await env.DB.prepare(`
       INSERT INTO video_views (session_id, video_id, video_title, watch_time_seconds, ip, country, referer, timestamp)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(session_id, video_id) 
+      DO UPDATE SET 
+        watch_time_seconds = MAX(video_views.watch_time_seconds, excluded.watch_time_seconds),
+        timestamp = excluded.timestamp
     `).bind(
       session_id, 
       video_id, 

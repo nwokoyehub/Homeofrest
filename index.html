@@ -70,9 +70,6 @@
     </div>
   </div>
 
-  <!-- (Keep the rest of your sections as they were - DEEP SLEEP, HEALING, NATURE, NEWSLETTER, FOOTER) -->
-  <!-- For brevity I kept only the main parts, but paste your full sections from the previous version -->
-
   <div class="section" id="deep-sleep" style="background:#111;">
     <h2>Deep Sleep Music</h2>
     <div class="grid">
@@ -111,7 +108,6 @@
     </div>
   </div>
 
-  <!-- NEWSLETTER (unchanged) -->
   <div class="section" style="background:#111; text-align:center; padding:4rem 1rem;" id="newsletter">
     <h2 style="color:#a0d8ff;">Stay in Deep Rest</h2>
     <p style="max-width:520px; margin:0 auto 2rem; font-size:1.1rem;">Get new sleep stories, 528Hz releases, nightly reminders & gentle tips delivered to your inbox.</p>
@@ -134,7 +130,7 @@
     <p style="margin-top:0.5rem;">Sweet dreams 🛌💤</p>
   </footer>
 
-  <!-- CLEAN CONTINUOUS VIDEO TRACKING -->
+  <!-- CLEAN & RELIABLE TRACKING -->
   <script>
     let sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
 
@@ -144,12 +140,7 @@
         await fetch('/log-video', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            session_id: sessionId,
-            video_id: videoId,
-            video_title: videoTitle,
-            watch_time_seconds: watchTime
-          }),
+          body: JSON.stringify({ session_id: sessionId, video_id: videoId, video_title: videoTitle, watch_time_seconds: watchTime }),
           keepalive: true
         });
       } catch (e) {}
@@ -182,7 +173,7 @@
                     const currentTime = Math.round(event.target.getCurrentTime());
                     logVideo(videoId, videoTitle, currentTime);
                   }
-                }, 15000); // every 15 seconds
+                }, 15000);
               }
             }
           }

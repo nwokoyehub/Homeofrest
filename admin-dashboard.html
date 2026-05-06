@@ -1,168 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Home of Rest</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - Home of Rest</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0a0a1a;color:#eaeaea;line-height:1.6;min-height:100vh}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* Header */
+.site-header{position:fixed;top:0;left:0;right:0;background:rgba(10,10,26,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.08);z-index:1000;padding:0 1.5rem}
+.header-container{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:65px}
+.logo{display:flex;align-items:center;gap:0.5rem;font-size:1.3rem;font-weight:700}
+.logo-icon{font-size:1.5rem}
+.main-nav{display:flex;gap:1.8rem}
+.nav-link{color:#a0a0a0;font-size:0.9rem;font-weight:500;transition:color .3s;position:relative;padding:0.2rem 0}
+.nav-link:hover,.nav-link.active{color:#fff}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#e94560;transition:width .3s}
+.nav-link:hover::after{width:100%}
+.mobile-menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:5px}
+.mobile-menu-toggle span{display:block;width:24px;height:2px;background:#fff;transition:.3s}
+
+/* Main */
+main{padding-top:65px}
+.admin-dashboard{padding:1.5rem;max-width:1400px;margin:0 auto}
+.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.admin-header h1{font-size:1.6rem}
+.btn-logout{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);color:#eaeaea;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;transition:all .3s}
+.btn-logout:hover{background:#e94560;border-color:#e94560}
+
+/* Cards */
+.admin-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem}
+.admin-card h3{margin-bottom:1.2rem;font-size:1.1rem}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1rem}
+.stat-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.2rem;text-align:center}
+.stat-card h4{font-size:1.8rem;color:#e94560;margin-bottom:0.3rem}
+.stat-card p{color:#a0a0a0;font-size:0.9rem}
+
+/* Table */
+.table-container{overflow-x:auto}
+.data-table{width:100%;border-collapse:collapse}
+.data-table th,.data-table td{padding:0.8rem;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)}
+.data-table th{color:#a0a0a0;font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px}
+.data-table td{font-size:0.9rem}
+.data-table tr:hover td{background:rgba(255,255,255,0.02)}
+.btn-small{padding:0.35rem 0.7rem;border-radius:6px;border:none;cursor:pointer;font-size:0.8rem;transition:all .3s}
+.btn-edit{background:#0f3460;color:#fff;margin-right:0.4rem}
+.btn-delete{background:#e94560;color:#fff}
+.btn-small:hover{opacity:0.85;transform:translateY(-1px)}
+
+/* Form */
+.video-form{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+.video-form .form-group.full-width{grid-column:1/-1}
+.video-form .btn-primary{grid-column:1/-1;justify-self:start}
+.form-group{text-align:left}
+.form-group label{display:block;margin-bottom:0.35rem;font-size:0.85rem;font-weight:500}
+.form-group input,.form-group select{width:100%;padding:0.7rem 0.9rem;border:1px solid rgba(255,255,255,0.12);border-radius:9px;background:rgba(255,255,255,0.05);color:#eaeaea;font-size:0.95rem;outline:none}
+.form-group input:focus,.form-group select:focus{border-color:#e94560}
+.btn-primary{display:inline-flex;align-items:center;gap:0.4rem;background:linear-gradient(135deg,#e94560,#c73e54);color:#fff;padding:0.8rem 1.8rem;border-radius:50px;font-weight:600;font-size:0.95rem;border:none;cursor:pointer;transition:transform .3s,box-shadow .3s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(233,69,96,0.3)}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:7px}
+::-webkit-scrollbar-track{background:#0a0a1a}
+::-webkit-scrollbar-thumb{background:#1a3a5c;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#e94560}
+
+/* Responsive */
+@media(max-width:768px){
+.main-nav{display:none;position:absolute;top:65px;left:0;right:0;background:rgba(10,10,26,0.98);flex-direction:column;padding:1.2rem;gap:0.8rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.main-nav.active{display:flex}
+.mobile-menu-toggle{display:flex}
+.admin-header{flex-direction:column;gap:0.8rem;text-align:center}
+.video-form{grid-template-columns:1fr}
+.stats-grid{grid-template-columns:1fr 1fr}
+}
+</style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">&#128716;</span>
-                <span class="logo-text">Home of Rest</span>
-            </a>
-            <nav class="main-nav">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="admin-dashboard.html" class="nav-link active">Dashboard</a>
-            </nav>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu" onclick="toggleMobileMenu()">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </header>
 
-    <main>
-        <div class="admin-dashboard">
-            <div class="admin-header">
-                <h1>&#128736; Admin Dashboard</h1>
-                <button class="btn-logout" onclick="adminLogout()">&#128682; Logout</button>
-            </div>
+<header class="site-header">
+<div class="header-container">
+<a href="index.html" class="logo"><span class="logo-icon">&#128716;</span><span class="logo-text">Home of Rest</span></a>
+<nav class="main-nav">
+<a href="index.html" class="nav-link">Home</a>
+<a href="admin-dashboard.html" class="nav-link active">Dashboard</a>
+</nav>
+<button class="mobile-menu-toggle" aria-label="Toggle menu" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+</div>
+</header>
 
-            <div class="admin-card">
-                <h3>&#43; Add New Video</h3>
-                <form class="video-form" onsubmit="addVideo(event)">
-                    <div class="form-group">
-                        <label>Video Title</label>
-                        <input type="text" id="videoTitle" placeholder="Enter video title" required>
-                    </div>
-                    <div class="form-group">
-                        <label>YouTube Video ID</label>
-                        <input type="text" id="videoId" placeholder="e.g. dQw4w9WgXcQ" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Channel</label>
-                        <select id="videoChannel" required>
-                            <option value="channel1">Sleep Fast Stories</option>
-                            <option value="channel2">SleepTube</option>
-                            <option value="channel3">Ocean 4K Ultra HD</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Duration</label>
-                        <input type="text" id="videoDuration" placeholder="e.g. 8 hours" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label>Tags (comma separated)</label>
-                        <input type="text" id="videoTags" placeholder="e.g. 432Hz, Deep Sleep, Relaxation">
-                    </div>
-                    <button type="submit" class="btn-primary">Add Video</button>
-                </form>
-            </div>
+<main>
+<div class="admin-dashboard">
+<div class="admin-header">
+<h1>&#128736; Admin Dashboard</h1>
+<button class="btn-logout" onclick="adminLogout()">&#128682; Logout</button>
+</div>
 
-            <div class="admin-card">
-                <h3>&#128202; Video Statistics</h3>
-                <div class="video-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                    <div class="video-card" style="text-align: center; padding: 1.5rem;">
-                        <h3 style="font-size: 2rem; color: var(--highlight);">18</h3>
-                        <p>Total Videos</p>
-                    </div>
-                    <div class="video-card" style="text-align: center; padding: 1.5rem;">
-                        <h3 style="font-size: 2rem; color: var(--highlight);">3</h3>
-                        <p>Channels</p>
-                    </div>
-                    <div class="video-card" style="text-align: center; padding: 1.5rem;">
-                        <h3 style="font-size: 2rem; color: var(--highlight);">6</h3>
-                        <p>Sleep Fast Stories</p>
-                    </div>
-                    <div class="video-card" style="text-align: center; padding: 1.5rem;">
-                        <h3 style="font-size: 2rem; color: var(--highlight);">3</h3>
-                        <p>SleepTube</p>
-                    </div>
-                </div>
-            </div>
+<div class="admin-card">
+<h3>&#128200; Video Statistics</h3>
+<div class="stats-grid">
+<div class="stat-card"><h4>17</h4><p>Total Videos</p></div>
+<div class="stat-card"><h4>3</h4><p>Channels</p></div>
+<div class="stat-card"><h4>7</h4><p>Sleep Fast Stories</p></div>
+<div class="stat-card"><h4>3</h4><p>Sleep Fast Stories 1</p></div>
+<div class="stat-card"><h4>7</h4><p>Ocean 4K Ultra HD</p></div>
+</div>
+</div>
 
-            <div class="admin-card">
-                <h3>&#128463; Manage Videos</h3>
-                <div class="table-container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Channel</th>
-                                <th>Duration</th>
-                                <th>Tags</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="videoTableBody">
-                            <tr>
-                                <td>9 Hours Deep Sleep - Bioluminescent Journey</td>
-                                <td>Sleep Fast Stories</td>
-                                <td>9 hours</td>
-                                <td>432Hz, Insomnia Relief</td>
-                                <td>
-                                    <button class="btn-small btn-edit">Edit</button>
-                                    <button class="btn-small btn-delete">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>528Hz Miracle Sleep Music</td>
-                                <td>Sleep Fast Stories</td>
-                                <td>8 hours</td>
-                                <td>528Hz, DNA Repair</td>
-                                <td>
-                                    <button class="btn-small btn-edit">Edit</button>
-                                    <button class="btn-small btn-delete">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Deep Sleep Music - Delta Waves</td>
-                                <td>SleepTube</td>
-                                <td>10 hours</td>
-                                <td>Delta Waves, Deep Sleep</td>
-                                <td>
-                                    <button class="btn-small btn-edit">Edit</button>
-                                    <button class="btn-small btn-delete">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4K Ocean Waves - Relaxing Sea Sounds</td>
-                                <td>Ocean 4K Ultra HD</td>
-                                <td>3 hours</td>
-                                <td>Ocean, 4K, Nature</td>
-                                <td>
-                                    <button class="btn-small btn-edit">Edit</button>
-                                    <button class="btn-small btn-delete">Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </main>
+<div class="admin-card">
+<h3>&#43; Add New Video</h3>
+<form class="video-form" onsubmit="addVideo(event)">
+<div class="form-group"><label>Video Title</label><input type="text" id="vTitle" placeholder="Enter video title" required></div>
+<div class="form-group"><label>YouTube Video ID</label><input type="text" id="vId" placeholder="e.g. kQUmLfw-R58" required></div>
+<div class="form-group"><label>Channel</label>
+<select id="vChannel" required>
+<option value="Sleep Fast Stories">Sleep Fast Stories</option>
+<option value="Sleep Fast Stories 1">Sleep Fast Stories 1</option>
+<option value="Ocean 4K Ultra HD">Ocean 4K Ultra HD</option>
+</select>
+</div>
+<div class="form-group"><label>Duration</label><input type="text" id="vDuration" placeholder="e.g. 8 hours" required></div>
+<div class="form-group full-width"><label>Tags (comma separated)</label><input type="text" id="vTags" placeholder="e.g. 432Hz, Deep Sleep"></div>
+<button type="submit" class="btn-primary">Add Video</button>
+</form>
+</div>
 
-    <script>
-        function toggleMobileMenu() {
-            document.querySelector('.main-nav').classList.toggle('active');
-        }
-        function adminLogout() {
-            localStorage.removeItem('adminLoggedIn');
-            window.location.href = 'admin.html';
-        }
-        function checkAdminAuth() {
-            if (!localStorage.getItem('adminLoggedIn')) {
-                window.location.href = 'admin.html';
-            }
-        }
-        function addVideo(e) {
-            e.preventDefault();
-            alert('Video added successfully! (In a full implementation, this would save to a database)');
-            document.querySelector('.video-form').reset();
-        }
-        checkAdminAuth();
-    </script>
+<div class="admin-card">
+<h3>&#128463; Manage Videos</h3>
+<div class="table-container">
+<table class="data-table">
+<thead><tr><th>Title</th><th>Channel</th><th>Duration</th><th>Actions</th></tr></thead>
+<tbody>
+<tr><td>9 Hours Deep Sleep Music • Bioluminescent Underwater Journey [432Hz]</td><td>Sleep Fast Stories</td><td>9 hours</td><td><button class="btn-small btn-edit">Edit</button><button class="btn-small btn-delete">Delete</button></td></tr>
+<tr><td>528Hz Miracle Sleep • Fall Asleep in Minutes</td><td>Sleep Fast Stories</td><td>1 hour</td><td><button class="btn-small btn-edit">Edit</button><button class="btn-small btn-delete">Delete</button></td></tr>
+<tr><td>528Hz + 963Hz • Pineal Gland Activation</td><td>Sleep Fast Stories 1</td><td>90 mins</td><td><button class="btn-small btn-edit">Edit</button><button class="btn-small btn-delete">Delete</button></td></tr>
+<tr><td>Best Calm Ambient Music 16k HDR | Sea Turtle, Shark & Sea Lion</td><td>Ocean 4K Ultra HD</td><td>11 hours</td><td><button class="btn-small btn-edit">Edit</button><button class="btn-small btn-delete">Delete</button></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+</main>
+
+<script>
+function toggleMobileMenu(){document.querySelector('.main-nav').classList.toggle('active')}
+function checkAuth(){if(!localStorage.getItem('adminLoggedIn'))window.location.href='admin.html'}
+function adminLogout(){localStorage.removeItem('adminLoggedIn');window.location.href='admin.html'}
+function addVideo(e){e.preventDefault();alert('Video added! (In production, save to a database or JSON file)');document.querySelector('.video-form').reset()}
+checkAuth();
+</script>
+
 </body>
 </html>

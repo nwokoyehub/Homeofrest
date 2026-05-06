@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Home of Rest</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="admin-page">
+        <div class="login-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#128716;</span>
+                <span class="logo-text">Home of Rest</span>
+            </a>
+            <h2>Admin Login</h2>
+            <p>Enter your credentials to access the admin dashboard</p>
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn-login">Sign In</button>
+                <p class="error-msg" id="error-msg"></p>
+            </form>
+            <a href="index.html" class="back-link">&#8592; Back to Home</a>
+        </div>
+    </div>
+    <script>
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-msg');
+            if (username === 'admin' && password === 'admin') {
+                localStorage.setItem('adminLoggedIn', 'true');
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                errorMsg.style.display = 'block';
+                errorMsg.textContent = 'Invalid username or password';
+            }
+        }
+    </script>
+</body>
+</html>

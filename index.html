@@ -1,1309 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
-  <!-- Primary SEO -->
-  <title>Home of Rest 🛌 Deep Sleep Music | 528Hz Healing Frequencies & Relaxation</title>
-  <meta name="description" content="Free deep sleep music with 432Hz, 528Hz & 396Hz healing frequencies. Sonic therapy for insomnia, anxiety relief, meditation, yoga & spa. Fall asleep in minutes with nature sounds & binaural beats.">
-  <meta name="keywords" content="deep sleep music, 528Hz healing frequency, 432Hz meditation, sleep music for insomnia, healing frequencies, binaural beats, nature sounds sleep, anxiety relief music, spa music, yoga meditation music, sleep therapy, relaxation music, miracle tone 528Hz, DNA repair frequency, stress relief sounds">
-  <link rel="canonical" href="https://homeofrest.pages.dev/">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://homeofrest.pages.dev/">
-  <meta property="og:title" content="Home of Rest 🛌 Deep Sleep Music & Healing Frequencies">
-  <meta property="og:description" content="Free sonic therapy with 432Hz, 528Hz & 396Hz healing frequencies. Deep sleep, meditation, anxiety relief & inner peace.">
-  <meta property="og:image" content="https://homeofrest.pages.dev/og-image.jpg">
-  <meta property="og:site_name" content="Home of Rest">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://homeofrest.pages.dev/">
-  <meta property="twitter:title" content="Home of Rest 🛌 Deep Sleep Music & Healing Frequencies">
-  <meta property="twitter:description" content="Free sonic therapy with 432Hz, 528Hz & 396Hz healing frequencies. Deep sleep, meditation, anxiety relief & inner peace.">
-  <meta property="twitter:image" content="https://homeofrest.pages.dev/og-image.jpg">
-
-  <!-- Structured Data - Website -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Home of Rest",
-    "url": "https://homeofrest.pages.dev/",
-    "description": "Free deep sleep music with 432Hz, 528Hz & 396Hz healing frequencies for insomnia, anxiety relief, meditation and relaxation.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://homeofrest.pages.dev/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-
-  <!-- Structured Data - Organization -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Home of Rest",
-    "url": "https://homeofrest.pages.dev/",
-    "logo": "https://homeofrest.pages.dev/logo.png",
-    "sameAs": [
-      "https://www.youtube.com/@sleepfaststories1",
-      "https://www.youtube.com/@sleepfaststories"
-    ]
-  }
-  </script>
-
-  <!-- Structured Data - VideoCollection -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": [
-      {
-        "@type": "VideoObject",
-        "name": "9 Hours Deep Sleep • Bioluminescent Underwater Journey [432Hz]",
-        "description": "Deep sleep music with 432Hz healing frequency. Bioluminescent underwater journey for insomnia relief and deep relaxation.",
-        "thumbnailUrl": "https://img.youtube.com/vi/kQUmLfw-R58/maxresdefault.jpg",
-        "uploadDate": "2026-01-01",
-        "duration": "PT9H",
-        "contentUrl": "https://www.youtube.com/watch?v=kQUmLfw-R58",
-        "embedUrl": "https://www.youtube.com/embed/kQUmLfw-R58"
-      },
-      {
-        "@type": "VideoObject",
-        "name": "528Hz Miracle Sleep Music • Fall Asleep in Minutes",
-        "description": "528Hz miracle tone sleep music. Fall asleep fast with the love frequency for DNA repair and deep healing.",
-        "thumbnailUrl": "https://img.youtube.com/vi/dL4SFnjAPlw/maxresdefault.jpg",
-        "uploadDate": "2026-01-01",
-        "duration": "PT8H",
-        "contentUrl": "https://www.youtube.com/watch?v=dL4SFnjAPlw",
-        "embedUrl": "https://www.youtube.com/embed/dL4SFnjAPlw"
-      }
-    ]
-  }
-  </script>
-
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛌</text></svg>">
-
-  <style>
-    :root {
-      --bg-primary: #0a0a0a;
-      --bg-secondary: #111;
-      --bg-card: #1a1a1a;
-      --bg-hover: #222;
-      --text-primary: #e8e8e8;
-      --text-secondary: #aaa;
-      --text-muted: #666;
-      --accent: #a0d8ff;
-      --accent-soft: rgba(160, 216, 255, 0.1);
-      --accent-glow: rgba(160, 216, 255, 0.3);
-      --success: #7dd87d;
-      --border: #222;
-      --gradient-hero: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(20,30,50,0.85) 50%, rgba(10,10,10,0.95) 100%);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body { 
-      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; 
-      background: var(--bg-primary); 
-      color: var(--text-primary); 
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-primary); }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #444; }
-
-    /* Header */
-    header { 
-      background: rgba(17, 17, 17, 0.95); 
-      padding: 1rem 2rem; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center;
-      position: sticky;
-      top: 0; 
-      z-index: 1000; 
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s ease;
-    }
-
-    .logo { 
-      font-size: 1.6rem; 
-      font-weight: 300; 
-      letter-spacing: 2px; 
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-    }
-
-    .logo:hover { opacity: 0.9; }
-
-    nav { display: flex; gap: 0.5rem; }
-    nav a { 
-      color: var(--text-secondary); 
-      padding: 0.5rem 1rem;
-      text-decoration: none; 
-      font-size: 0.95rem;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      position: relative;
-    }
-    nav a:hover { 
-      color: var(--accent); 
-      background: var(--accent-soft);
-    }
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-    nav a:hover::after { width: 60%; }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text-primary);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    /* Hero */
-    .hero { 
-      text-align: center; 
-      padding: 6rem 1.5rem 5rem; 
-      background: var(--gradient-hero);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(160, 216, 255, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 50%, rgba(120, 180, 255, 0.05) 0%, transparent 40%);
-      animation: float 20s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(30px, -30px) rotate(1deg); }
-      66% { transform: translate(-20px, 20px) rotate(-1deg); }
-    }
-
-    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-
-    .hero h1 { 
-      font-size: clamp(2.2rem, 5vw, 3.8rem); 
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .hero-badges {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-badge {
-      background: var(--accent-soft);
-      border: 1px solid rgba(160, 216, 255, 0.2);
-      color: var(--accent);
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: #0a0a0a;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px var(--accent-glow);
-    }
-    .hero-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px var(--accent-glow);
-    }
-
-    /* Stats Bar */
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      padding: 2rem;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-    .stat-item { text-align: center; }
-    .stat-value { 
-      font-size: 1.8rem; 
-      font-weight: 600; 
-      color: var(--accent);
-    }
-    .stat-label { 
-      color: var(--text-muted); 
-      font-size: 0.8rem; 
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* Sections */
-    .section { 
-      padding: 4rem 1.5rem; 
-      max-width: 1280px; 
-      margin: 0 auto; 
-    }
-
-    .section-alt { background: var(--bg-secondary); }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-header h2 { 
-      font-size: clamp(1.6rem, 3vw, 2.2rem); 
-      font-weight: 300;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    .section-header p {
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 1.05rem;
-    }
-
-    /* About */
-    .about-content {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: var(--text-secondary);
-    }
-    .about-content strong { color: var(--text-primary); }
-
-    .frequency-grid {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2.5rem;
-      flex-wrap: wrap;
-    }
-    .freq-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem 2rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      min-width: 160px;
-    }
-    .freq-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-    }
-    .freq-card .freq-hz {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    .freq-card .freq-name {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.25rem;
-    }
-    .freq-card .freq-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* CTA Banner */
-    .cta-banner {
-      text-align: center;
-      padding: 3rem 1.5rem;
-      background: linear-gradient(135deg, rgba(160, 216, 255, 0.05) 0%, rgba(120, 180, 255, 0.03) 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .cta-banner p {
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-    .cta-banner strong { color: var(--text-primary); }
-
-    /* Video Grid */
-    .grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
-      gap: 2rem; 
-    }
-
-    .video-card { 
-      background: var(--bg-card); 
-      border-radius: 20px; 
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-    .video-card:hover { 
-      transform: translateY(-8px) scale(1.01);
-      border-color: rgba(160, 216, 255, 0.3);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(160, 216, 255, 0.05);
-    }
-
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      background: #000;
-      overflow: hidden;
-    }
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .video-wrapper .video-placeholder {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
-    .video-wrapper .video-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.7;
-      transition: opacity 0.3s;
-    }
-    .video-wrapper .video-placeholder:hover img { opacity: 0.9; }
-    .video-wrapper .play-btn {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: rgba(160, 216, 255, 0.9);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: #0a0a0a;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-    .video-wrapper .video-placeholder:hover .play-btn {
-      transform: scale(1.1);
-      background: var(--accent);
-    }
-
-    .video-card .video-info { padding: 1.25rem 1.5rem; }
-    .video-card .video-category {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    .video-card .video-title { 
-      font-size: 1.05rem; 
-      font-weight: 500;
-      color: var(--text-primary);
-      line-height: 1.4;
-      margin-bottom: 0.75rem;
-    }
-    .video-card .video-meta {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .video-card .video-meta span {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    /* Benefits */
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .benefit-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    .benefit-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-    .benefit-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .benefit-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-    }
-    .benefit-card p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Newsletter */
-    .newsletter-section {
-      background: linear-gradient(135deg, rgba(160, 216, 255, 0.05) 0%, rgba(120, 180, 255, 0.02) 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .newsletter-content {
-      max-width: 560px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .newsletter-content h2 {
-      color: var(--accent);
-      font-size: 1.8rem;
-      font-weight: 300;
-      margin-bottom: 0.75rem;
-    }
-    .newsletter-content > p {
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      font-size: 1.05rem;
-    }
-
-    .newsletter-form {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-
-    .newsletter-form input {
-      flex: 1;
-      min-width: 260px;
-      padding: 1rem 1.5rem;
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      background: var(--bg-card);
-      color: var(--text-primary);
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-    .newsletter-form input:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft);
-    }
-    .newsletter-form input::placeholder { color: var(--text-muted); }
-
-    .newsletter-form button {
-      padding: 1rem 2.5rem;
-      background: var(--accent);
-      color: #0a0a0a;
-      border: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-    .newsletter-form button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px var(--accent-glow);
-    }
-    .newsletter-form button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .success-message {
-      display: none;
-      background: rgba(125, 216, 125, 0.1);
-      border: 1px solid rgba(125, 216, 125, 0.3);
-      color: var(--success);
-      padding: 1.25rem;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      margin-top: 1rem;
-      animation: fadeInUp 0.5s ease;
-    }
-    .success-message.show { display: block; }
-
-    .error-message {
-      display: none;
-      background: rgba(255, 100, 100, 0.1);
-      border: 1px solid rgba(255, 100, 100, 0.3);
-      color: #ff7d7d;
-      padding: 1rem;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      margin-top: 1rem;
-    }
-    .error-message.show { display: block; }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .privacy-note {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 1rem;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 3rem 1.5rem 2rem;
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .footer-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--accent); }
-    footer p { color: var(--text-muted); font-size: 0.9rem; }
-    footer .footer-heart { color: #ff7d7d; }
-
-    /* Back to Top */
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 48px;
-      height: 48px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      color: var(--accent);
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 999;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    .back-to-top:hover {
-      background: var(--accent);
-      color: #0a0a0a;
-      transform: translateY(-3px);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      header { padding: 1rem; }
-      .logo { font-size: 1.3rem; }
-      nav { display: none; }
-      nav.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-secondary);
-        padding: 1rem;
-        border-bottom: 1px solid var(--border);
-        gap: 0.25rem;
-      }
-      .mobile-menu-btn { display: block; }
-      .stats-bar { gap: 1.5rem; }
-      .grid { grid-template-columns: 1fr; }
-      .frequency-grid { gap: 1rem; }
-      .freq-card { min-width: 140px; padding: 1rem; }
-    }
-
-    /* Accessibility */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      html { scroll-behavior: auto; }
-    }
-  </style>
-<base target="_blank">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home of Rest - Deep Sleep Music & Healing Frequencies</title>
+    <meta name="description" content="Free healing frequencies, nature sounds & meditation music to help you fall asleep faster, reduce anxiety, and restore your mind.">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
-  <!-- Skip Link for Accessibility -->
-  <a href="#main-content" class="sr-only">Skip to main content</a>
-
-  <header role="banner">
-    <a href="/" class="logo" aria-label="Home of Rest - Deep Sleep Music">
-      <span>🛌</span>
-      <span>Home of Rest</span>
-    </a>
-    <button class="mobile-menu-btn" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
-    <nav role="navigation" aria-label="Main navigation">
-      <a href="#deep-sleep">Deep Sleep</a>
-      <a href="#healing">Healing</a>
-      <a href="#nature">Nature</a>
-      <a href="#benefits">Benefits</a>
-      <a href="#newsletter">Subscribe</a>
-    </nav>
-  </header>
-
-  <main id="main-content">
-
-    <!-- Hero Section -->
-    <section class="hero" aria-label="Hero section">
-      <div class="hero-content">
-        <h1>Sonic Therapy for Deep Sleep & Inner Peace</h1>
-        <p class="hero-subtitle">Free healing frequencies, nature sounds & meditation music to help you fall asleep faster, reduce anxiety, and restore your mind.</p>
-        <div class="hero-badges">
-          <span class="hero-badge">🔊 432Hz</span>
-          <span class="hero-badge">💫 528Hz Miracle Tone</span>
-          <span class="hero-badge">🌊 396Hz</span>
-          <span class="hero-badge">🧘 Binaural Beats</span>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#128716;</span>
+                <span class="logo-text">Home of Rest</span>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="#deep-relaxation" class="nav-link">Deep Relaxation</a>
+                <a href="#insomnia-relief" class="nav-link">Insomnia Relief</a>
+                <a href="#channel1" class="nav-link">Sleep Fast Stories</a>
+                <a href="#channel2" class="nav-link">SleepTube</a>
+                <a href="#channel3" class="nav-link">Ocean 4K</a>
+            </nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-        <a href="#featured" class="hero-cta" aria-label="Start listening to sleep music">
-          🎧 Start Listening
-        </a>
-      </div>
-    </section>
+    </header>
 
-    <!-- Stats Bar -->
-    <div class="stats-bar" role="region" aria-label="Site statistics">
-      <div class="stat-item">
-        <div class="stat-value">50+</div>
-        <div class="stat-label">Sleep Tracks</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">9H</div>
-        <div class="stat-label">Max Duration</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">100%</div>
-        <div class="stat-label">Free Forever</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">🌍</div>
-        <div class="stat-label">Global Access</div>
-      </div>
-    </div>
+    <main>
+        <section class="hero">
+            <h1>Sonic Therapy for Deep Sleep & Inner Peace</h1>
+            <p>Free healing frequencies, nature sounds & meditation music to help you fall asleep faster, reduce anxiety, and restore your mind.</p>
+            <div class="hero-tags">
+                <span class="tag">&#128266; 432Hz</span>
+                <span class="tag">&#10024; 528Hz Miracle Tone</span>
+                <span class="tag">&#127754; 396Hz</span>
+                <span class="tag">&#129496; Binaural Beats</span>
+            </div>
+            <a href="#deep-relaxation" class="btn-primary">&#127911; Start Listening</a>
+        </section>
 
-    <!-- About / Frequencies Section -->
-    <section class="section section-alt" aria-labelledby="about-heading">
-      <div class="section-header">
-        <h2 id="about-heading">The Science of Healing Frequencies</h2>
-        <p>Each track is carefully tuned to specific frequencies known for their therapeutic properties. Experience the ancient art of sound healing from the comfort of your bed.</p>
-      </div>
-      <div class="about-content">
-        <p>Home of Rest offers deeply soothing music infused with powerful <strong>healing frequencies</strong> — scientifically studied tones that interact with your brainwaves to promote relaxation, emotional release, and deep restorative sleep.</p>
-      </div>
-      <div class="frequency-grid">
-        <div class="freq-card">
-          <div class="freq-hz">432Hz</div>
-          <div class="freq-name">Natural Harmony</div>
-          <div class="freq-desc">Reduces stress & anxiety</div>
+        <section id="deep-relaxation" class="section">
+            <div class="section-header">
+                <h2>&#127775; Deep Relaxation</h2>
+                <p>Calm your mind and body with deeply soothing music and nature sounds</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this, 'kQUmLfw-R58')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/kQUmLfw-R58/maxresdefault.jpg" alt="Deep Relaxation">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>9 Hours Deep Sleep Music • Bioluminescent Underwater Journey [432Hz]</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 9 hours</span>
+                            <span>&#127775; 432Hz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'dL4SFnjAPlw')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/dL4SFnjAPlw/maxresdefault.jpg" alt="Deep Relaxation">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>528Hz Miracle Sleep • Fall Asleep in Minutes | 1 Hour Deep Healing Sleep Music</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 1 hour</span>
+                            <span>&#10024; 528Hz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'VW9ZrmOWJ4M')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/VW9ZrmOWJ4M/maxresdefault.jpg" alt="Deep Relaxation">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>528Hz Deep Sleep Music • Fall Asleep Fast & Relieve Stress (5 Hours)</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 5 hours</span>
+                            <span>&#127754; Healing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="insomnia-relief" class="section">
+            <div class="section-header">
+                <h2>&#127769; Insomnia Relief</h2>
+                <p>Specially curated videos to help you fall asleep fast and stay asleep all night</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this, 'qTpVPIdeALo')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/qTpVPIdeALo/maxresdefault.jpg" alt="Insomnia Relief">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>4 Hour Deep Sleep | Fall Asleep In Less Than 5 Minutes</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 4 hours</span>
+                            <span>&#127769; Insomnia Relief</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, '_fKijr_S31Y')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/_fKijr_S31Y/maxresdefault.jpg" alt="Insomnia Relief">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>You must sleep tonight – 80 Minute Gentle Piano & Violin Sleep Music</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 80 mins</span>
+                            <span>&#127769; Insomnia Relief</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'Q3jGg7KibiM')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/Q3jGg7KibiM/maxresdefault.jpg" alt="Insomnia Relief">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Fairy tales sleep cheat</h3>
+                        <div class="video-meta">
+                            <span>&#9201; varies</span>
+                            <span>&#127769; Insomnia Relief</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="channel1" class="section channel-section">
+            <div class="channel-header">
+                <div class="channel-avatar">S</div>
+                <div class="channel-info">
+                    <h3>Sleep Fast Stories</h3>
+                    <a href="https://www.youtube.com/@SleepFastStories" target="_blank">&#128279; Visit Channel</a>
+                </div>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this, 'kQUmLfw-R58")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/kQUmLfw-R58/maxresdefault.jpg" alt="9 Hours Deep Sleep Music • Bioluminescent Underwater Journey [432Hz]">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>9 Hours Deep Sleep Music • Bioluminescent Underwater Journey [432Hz]</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 9 hours</span>
+                            <span>432Hz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'dL4SFnjAPlw")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/dL4SFnjAPlw/maxresdefault.jpg" alt="528Hz Miracle Sleep • Fall Asleep in Minutes | 1 Hour Deep Healing Sleep Music">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>528Hz Miracle Sleep • Fall Asleep in Minutes | 1 Hour Deep Healing Sleep Music</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 1 hour</span>
+                            <span>528Hz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'VW9ZrmOWJ4M")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/VW9ZrmOWJ4M/maxresdefault.jpg" alt="528Hz Deep Sleep Music • Fall Asleep Fast & Relieve Stress (5 Hours)">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>528Hz Deep Sleep Music • Fall Asleep Fast & Relieve Stress (5 Hours)</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 5 hours</span>
+                            <span>528Hz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'qTpVPIdeALo")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/qTpVPIdeALo/maxresdefault.jpg" alt="4 Hour Deep Sleep | Fall Asleep In Less Than 5 Minutes">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>4 Hour Deep Sleep | Fall Asleep In Less Than 5 Minutes</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 4 hours</span>
+                            <span>Deep Sleep</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, '_fKijr_S31Y")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/_fKijr_S31Y/maxresdefault.jpg" alt="You must sleep tonight – 80 Minute Gentle Piano & Violin Sleep Music">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>You must sleep tonight – 80 Minute Gentle Piano & Violin Sleep Music</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 80 mins</span>
+                            <span>Piano</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'Q3jGg7KibiM")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/Q3jGg7KibiM/maxresdefault.jpg" alt="Fairy tales sleep cheat">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Fairy tales sleep cheat</h3>
+                        <div class="video-meta">
+                            <span>&#9201; varies</span>
+                            <span>Sleep Story</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, '76tiYbHuJBw")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/76tiYbHuJBw/maxresdefault.jpg" alt="1 Hour Peaceful Village Night Walk Sleep Story | Gentle Rain & Calming Narration">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>1 Hour Peaceful Village Night Walk Sleep Story | Gentle Rain & Calming Narration</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 1 hour</span>
+                            <span>Sleep Story</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="channel2" class="section channel-section">
+            <div class="channel-header">
+                <div class="channel-avatar">S1</div>
+                <div class="channel-info">
+                    <h3>Sleep Fast Stories 1</h3>
+                    <a href="https://www.youtube.com/@sleepfaststories1" target="_blank">&#128279; Visit Channel</a>
+                </div>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this, 'jPrvs97K0NI")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/jPrvs97K0NI/maxresdefault.jpg" alt="528Hz + 963Hz • Pineal Gland Activation | Fall Asleep in Minutes – Deep Sleeper V2">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>528Hz + 963Hz • Pineal Gland Activation | Fall Asleep in Minutes – Deep Sleeper V2</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 90 mins</span>
+                            <span>528Hz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, '8RaMwIqfG2k")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/8RaMwIqfG2k/maxresdefault.jpg" alt="9 Hours Deep Sleep Music for Anxiety • 528Hz Miracle Tone • Release Negative Energy">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>9 Hours Deep Sleep Music for Anxiety • 528Hz Miracle Tone • Release Negative Energy</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 6 hours</span>
+                            <span>528Hz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'lF4EjirkoG8")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/lF4EjirkoG8/maxresdefault.jpg" alt="DNA Repair 528 Hz & Ringkøbing Fjord Birds | Deep Sleep & Healing">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>DNA Repair 528 Hz & Ringkøbing Fjord Birds | Deep Sleep & Healing</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 6 hours</span>
+                            <span>528Hz</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="channel3" class="section channel-section">
+            <div class="channel-header">
+                <div class="channel-avatar">O</div>
+                <div class="channel-info">
+                    <h3>Ocean 4K Ultra HD</h3>
+                    <a href="https://www.youtube.com/@Ocean4kUltraHD" target="_blank">&#128279; Visit Channel</a>
+                </div>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this, 'hHtZKPct1BA")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/hHtZKPct1BA/maxresdefault.jpg" alt="Best Calm Ambient Music 16k HDR | Sea Turtle, Shark & Sea Lion | Deep Sleep & Relaxation">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Best Calm Ambient Music 16k HDR | Sea Turtle, Shark & Sea Lion | Deep Sleep & Relaxation</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 11 hours</span>
+                            <span>Ocean</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'D17tCM2sLt0")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/D17tCM2sLt0/maxresdefault.jpg" alt="Mind Blowing 16K HDR Video 120FPS Perfect for 4K/8K Ultra HD TV - OLED | Dolby Vision 2026">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Mind Blowing 16K HDR Video 120FPS Perfect for 4K/8K Ultra HD TV - OLED | Dolby Vision 2026</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 4 hours</span>
+                            <span>HDR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'xZ-0cvfRPZw")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/xZ-0cvfRPZw/maxresdefault.jpg" alt="Best Calm Ambient Music 16k HDR | Sea Turtle, Shark & Sea Lion | Deep Sleep & Relaxation">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Best Calm Ambient Music 16k HDR | Sea Turtle, Shark & Sea Lion | Deep Sleep & Relaxation</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 5 hours</span>
+                            <span>Ocean</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'FhYI-j2nejY")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/FhYI-j2nejY/maxresdefault.jpg" alt="12 Hours Crystal Delta wave, Deep Dream Meditation Music | Sleep Study & Healing">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>12 Hours Crystal Delta wave, Deep Dream Meditation Music | Sleep Study & Healing</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 12 hours</span>
+                            <span>Delta Waves</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, '6KhZoNBv0b8")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/6KhZoNBv0b8/maxresdefault.jpg" alt="The Coolest 16K HDR Video ULTRA HD - Dolby Vision HDR 16K">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>The Coolest 16K HDR Video ULTRA HD - Dolby Vision HDR 16K</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 12 hours</span>
+                            <span>HDR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, 'AHa-2iFUwBM")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/AHa-2iFUwBM/maxresdefault.jpg" alt="🐟 Coral Reef Aquarium Fish Tank with Water Sound - Tropical Fish, 11 Hours Underwater Video">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>🐟 Coral Reef Aquarium Fish Tank with Water Sound - Tropical Fish, 11 Hours Underwater Video</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 12 hours</span>
+                            <span>Aquarium</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this, '57x7H-cZHow")">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/57x7H-cZHow/maxresdefault.jpg" alt="Amazing OLED HDR Test 16K Video | Dolby Vision 8K HDR 120FPS">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Amazing OLED HDR Test 16K Video | Dolby Vision 8K HDR 120FPS</h3>
+                        <div class="video-meta">
+                            <span>&#9201; 14 hours</span>
+                            <span>HDR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo-icon">&#128716;</span>
+                <span class="logo-text">Home of Rest</span>
+                <p class="footer-tagline">Sonic Therapy for Deep Sleep & Inner Peace</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <a href="#deep-relaxation">Deep Relaxation</a>
+                    <a href="#insomnia-relief">Insomnia Relief</a>
+                    <a href="#channel1">Sleep Fast Stories</a>
+                    <a href="#channel2">Sleep Fast Stories 1</a>
+                    <a href="#channel3">Ocean 4K</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Healing Frequencies</h4>
+                    <a href="#">432Hz Natural Harmony</a>
+                    <a href="#">528Hz Miracle Tone</a>
+                    <a href="#">396Hz Liberation</a>
+                    <a href="#">963Hz Crown Chakra</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Admin</h4>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Home of Rest. All rights reserved.</p>
+                <p class="footer-disclaimer">Healing frequencies and sleep music for relaxation purposes only. Not a substitute for professional medical advice.</p>
+            </div>
         </div>
-        <div class="freq-card">
-          <div class="freq-hz">528Hz</div>
-          <div class="freq-name">Miracle Tone</div>
-          <div class="freq-desc">DNA repair & transformation</div>
-        </div>
-        <div class="freq-card">
-          <div class="freq-hz">396Hz</div>
-          <div class="freq-name">Liberation</div>
-          <div class="freq-desc">Releases fear & guilt</div>
-        </div>
-        <div class="freq-card">
-          <div class="freq-hz">963Hz</div>
-          <div class="freq-name">Crown Chakra</div>
-          <div class="freq-desc">Spiritual awakening</div>
-        </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- CTA Banner -->
-    <div class="cta-banner">
-      <p><strong>Choose the video that matches your mood tonight.</strong><br>Press play. Close your eyes. Let the frequencies guide you into deep rest.</p>
-    </div>
-
-    <!-- Featured Section -->
-    <section class="section" id="featured" aria-labelledby="featured-heading">
-      <div class="section-header">
-        <h2 id="featured-heading">✨ Featured Tonight</h2>
-        <p>Our most popular sleep tracks, handpicked for deep relaxation and healing.</p>
-      </div>
-      <div class="grid">
-        <article class="video-card">
-          <div class="video-wrapper" data-video="kQUmLfw-R58">
-            <div class="video-placeholder" onclick="loadVideo(this, 'kQUmLfw-R58')">
-              <img src="https://img.youtube.com/vi/kQUmLfw-R58/maxresdefault.jpg" alt="Bioluminescent underwater journey with 432Hz healing frequency for deep sleep" loading="lazy">
-              <div class="play-btn">▶</div>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-category">Deep Sleep • 432Hz</span>
-            <h3 class="video-title">9 Hours Deep Sleep • Bioluminescent Underwater Journey</h3>
-            <div class="video-meta">
-              <span>⏱️ 9 hours</span>
-              <span>🎵 432Hz</span>
-              <span>😴 Insomnia Relief</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="video-card">
-          <div class="video-wrapper" data-video="dL4SFnjAPlw">
-            <div class="video-placeholder" onclick="loadVideo(this, 'dL4SFnjAPlw')">
-              <img src="https://img.youtube.com/vi/dL4SFnjAPlw/maxresdefault.jpg" alt="528Hz miracle sleep music for falling asleep in minutes" loading="lazy">
-              <div class="play-btn">▶</div>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-category">Miracle Tone • 528Hz</span>
-            <h3 class="video-title">528Hz Miracle Sleep Music • Fall Asleep in Minutes</h3>
-            <div class="video-meta">
-              <span>⏱️ 8 hours</span>
-              <span>💫 DNA Repair</span>
-              <span>🧘 Meditation</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="video-card">
-          <div class="video-wrapper" data-video="VW9ZrmOWJ4M">
-            <div class="video-placeholder" onclick="loadVideo(this, 'VW9ZrmOWJ4M')">
-              <img src="https://img.youtube.com/vi/VW9ZrmOWJ4M/maxresdefault.jpg" alt="5 hours of 528Hz deep sleep music" loading="lazy">
-              <div class="play-btn">▶</div>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-category">Deep Sleep • 528Hz</span>
-            <h3 class="video-title">5 Hours 528Hz Deep Sleep Music</h3>
-            <div class="video-meta">
-              <span>⏱️ 5 hours</span>
-              <span>🎵 Healing</span>
-              <span>🌙 Night Mode</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Deep Sleep Section -->
-    <section class="section section-alt" id="deep-sleep" aria-labelledby="deep-sleep-heading">
-      <div class="section-header">
-        <h2 id="deep-sleep-heading">🌙 Deep Sleep Music</h2>
-        <p>Extended sleep sessions designed to carry you through the entire night. No interruptions, no ads — just pure sonic tranquility.</p>
-      </div>
-      <div class="grid">
-        <article class="video-card">
-          <div class="video-wrapper" data-video="8RaMwIqfG2k">
-            <div class="video-placeholder" onclick="loadVideo(this, '8RaMwIqfG2k')">
-              <img src="https://img.youtube.com/vi/8RaMwIqfG2k/maxresdefault.jpg" alt="9 hours deep sleep music 528Hz for anxiety relief" loading="lazy">
-              <div class="play-btn">▶</div>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-category">Anxiety Relief • 528Hz</span>
-            <h3 class="video-title">9 Hours Deep Sleep Music 528Hz • Anxiety Relief</h3>
-            <div class="video-meta">
-              <span>⏱️ 9 hours</span>
-              <span>💆 Stress Relief</span>
-              <span>🛌 All Night</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="video-card">
-          <div class="video-wrapper" data-video="VW9ZrmOWJ4M">
-            <div class="video-placeholder" onclick="loadVideo(this, 'VW9ZrmOWJ4M')">
-              <img src="https://img.youtube.com/vi/VW9ZrmOWJ4M/maxresdefault.jpg" alt="5 hours 528Hz deep sleep music" loading="lazy">
-              <div class="play-btn">▶</div>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-category">Deep Sleep • 528Hz</span>
-            <h3 class="video-title">5 Hours 528Hz Deep Sleep Music</h3>
-            <div class="video-meta">
-              <span>⏱️ 5 hours</span>
-              <span>🎵 Healing</span>
-              <span>🌙 Night Mode</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Healing Frequencies Section -->
-    <section class="section" id="healing" aria-labelledby="healing-heading">
-      <div class="section-header">
-        <h2 id="healing-heading">🔮 Healing Frequencies & Meditation</h2>
-        <p>Targeted frequencies for specific healing intentions. From pineal gland activation to DNA repair — tune into your body's natural rhythms.</p>
-      </div>
-      <div class="grid">
-        <article class="video-card">
-          <div class="video-wrapper" data-video="jPrvs97K0NI">
-            <div class="video-placeholder" onclick="loadVideo(this, 'jPrvs97K0NI')">
-              <img src="https://img.youtube.com/vi/jPrvs97K0NI/maxresdefault.jpg" alt="Pineal gland activation with 528Hz and 963Hz frequencies" loading="lazy">
-              <div class="play-btn">▶</div>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-category">Activation • 528Hz + 963Hz</span>
-            <h3 class="video-title">Pineal Gland Activation • 528Hz + 963Hz</h3>
-            <div class="video-meta">
-              <span>⏱️ 3 hours</span>
-              <span>👁️ Third Eye</span>
-              <span>✨ Spiritual</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="video-card">
-          <div class="video-wrapper" data-video="lF4EjirkoG8">
-            <div class="video-placeholder" onclick="loadVideo(this, 'lF4EjirkoG8')">
-              <img src="https://img.youtube.com/vi/lF4EjirkoG8/maxresdefault.jpg" alt="DNA repair with 528Hz and gentle fjord birds nature sounds" loading="lazy">
-              <div class="play-btn">▶</div>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-category">DNA Repair • 528Hz</span>
-            <h3 class="video-title">DNA Repair 528Hz + Gentle Fjord Birds</h3>
-            <div class="video-meta">
-              <span>⏱️ 6 hours</span>
-              <span>🧬 Cell Regeneration</span>
-              <span>🐦 Nature Sounds</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Nature Sounds Section -->
-    <section class="section section-alt" id="nature" aria-labelledby="nature-heading">
-      <div class="section-header">
-        <h2 id="nature-heading">🌿 Nature Sounds & Ambient Relaxation</h2>
-        <p>Immerse yourself in the calming sounds of nature. Rain, ocean waves, forest birds — layered with healing frequencies for maximum relaxation.</p>
-      </div>
-      <div class="grid">
-        <article class="video-card">
-          <div class="video-wrapper" data-video="kQUmLfw-R58">
-            <div class="video-placeholder" onclick="loadVideo(this, 'kQUmLfw-R58')">
-              <img src="https://img.youtube.com/vi/kQUmLfw-R58/maxresdefault.jpg" alt="Bioluminescent underwater journey with 432Hz for deep relaxation" loading="lazy">
-              <div class="play-btn">▶</div>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-category">Ocean • 432Hz</span>
-            <h3 class="video-title">Bioluminescent Underwater Journey • 432Hz</h3>
-            <div class="video-meta">
-              <span>⏱️ 9 hours</span>
-              <span>🌊 Ocean Ambient</span>
-              <span>✨ Visual Journey</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="section" id="benefits" aria-labelledby="benefits-heading">
-      <div class="section-header">
-        <h2 id="benefits-heading">Why Choose Home of Rest?</h2>
-        <p>Thousands of people trust our sonic therapy for better sleep, reduced anxiety, and deeper meditation.</p>
-      </div>
-      <div class="benefits-grid">
-        <div class="benefit-card">
-          <div class="benefit-icon">😴</div>
-          <h3>Fight Insomnia</h3>
-          <p>Our 528Hz and 432Hz frequencies are specifically tuned to slow brainwaves and guide you into deep, restorative sleep naturally.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">🧘</div>
-          <h3>Deep Meditation</h3>
-          <p>Whether you're a beginner or experienced meditator, our binaural beats and solfeggio frequencies help you reach deeper states of consciousness.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">💆</div>
-          <h3>Stress & Anxiety Relief</h3>
-          <p>396Hz liberation frequency helps release subconscious fear and guilt, while nature sounds activate your parasympathetic nervous system.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">🎧</div>
-          <h3>100% Free & Ad-Free</h3>
-          <p>No subscriptions, no paywalls, no interruptions. Just pure healing music, available to everyone who needs rest.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">🌙</div>
-          <h3>All-Night Playback</h3>
-          <p>Tracks up to 9 hours long ensure uninterrupted sleep. No need to wake up and restart — just press play and drift away.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">🔬</div>
-          <h3>Science-Backed Frequencies</h3>
-          <p>We use proven solfeggio frequencies and binaural beats that have been studied for their effects on brainwave entrainment and relaxation.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="section newsletter-section" id="newsletter" aria-labelledby="newsletter-heading">
-      <div class="newsletter-content">
-        <h2 id="newsletter-heading">Stay in Deep Rest</h2>
-        <p>Get new sleep stories, 528Hz releases, nightly reminders & gentle tips delivered to your inbox. No spam — just calm.</p>
-
-        <form id="subscribeForm" class="newsletter-form" novalidate>
-          <input 
-            type="email" 
-            name="email" 
-            id="emailInput" 
-            placeholder="your@email.com" 
-            required 
-            aria-label="Email address for newsletter subscription"
-            autocomplete="email"
-          >
-          <button type="submit" id="subscribeBtn">
-            <span id="btnText">Subscribe 🛌</span>
-            <span id="btnLoading" style="display:none;">Sending...</span>
-          </button>
-        </form>
-
-        <div id="successMessage" class="success-message" role="status" aria-live="polite">
-          ✅ Thank you! You're now part of Home of Rest.<br>
-          <span style="font-size:0.95rem;opacity:0.8;">Welcome to the calmest corner of the internet 🌙</span>
-        </div>
-
-        <div id="errorMessage" class="error-message" role="alert" aria-live="assertive">
-          Something went wrong. Please try again.
-        </div>
-
-        <p class="privacy-note">We respect your peace. Unsubscribe anytime. Only 1–2 emails per week.</p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer role="contentinfo">
-    <div class="footer-links">
-      <a href="/admin.html">Admin Portal</a>
-      <a href="https://www.youtube.com/@sleepfaststories1" target="_blank" rel="noopener">YouTube Channel 1</a>
-      <a href="https://www.youtube.com/@sleepfaststories" target="_blank" rel="noopener">YouTube Channel 2</a>
-    </div>
-    <p>© 2026 Home of Rest • All videos from @sleepfaststories1 &amp; @sleepfaststories</p>
-    <p style="margin-top:0.5rem;">Made with <span class="footer-heart">♥</span> for better sleep 🛌💤</p>
-  </footer>
-
-  <button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-  <!-- Tracking & Interactivity -->
-  <script>
-    // ====== SESSION & TRACKING ======
-    let sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-
-    async function logVisit(duration = null) {
-      try {
-        await fetch('/log-visit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, duration: duration }),
-          keepalive: true
-        });
-      } catch (e) {}
-    }
-
-    async function logVideo(videoId, videoTitle, watchTime) {
-      try {
-        await fetch('/log-video', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            session_id: sessionId,
-            video_id: videoId,
-            video_title: videoTitle,
-            watch_time_seconds: watchTime
-          }),
-          keepalive: true
-        });
-      } catch (e) {}
-    }
-
-    // Page visit logging
-    window.addEventListener('load', () => logVisit());
-    window.addEventListener('beforeunload', () => {
-      const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
-      logVisit(timeSpent);
-    });
-    setInterval(() => {
-      const timeSpent = Math.round((Date.now() - performance.timing.navigationStart) / 1000);
-      logVisit(timeSpent);
-    }, 30000);
-
-    // ====== LAZY VIDEO LOADING ======
-    function loadVideo(placeholder, videoId) {
-      const wrapper = placeholder.parentElement;
-      const titleEl = wrapper.closest('.video-card').querySelector('.video-title');
-      const videoTitle = titleEl ? titleEl.textContent.trim() : 'Unknown Video';
-
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      iframe.allowFullscreen = true;
-      iframe.title = videoTitle;
-      iframe.style.position = 'absolute';
-      iframe.style.top = '0';
-      iframe.style.left = '0';
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-      iframe.style.border = 'none';
-
-      placeholder.style.display = 'none';
-      wrapper.appendChild(iframe);
-
-      // Log video play
-      logVideo(videoId, videoTitle, 0);
-
-      // Setup YouTube API tracking
-      setupVideoTracking(wrapper, videoId, videoTitle);
-    }
-
-    // ====== YOUTUBE API TRACKING ======
-    function setupVideoTracking(wrapper, videoId, videoTitle) {
-      const iframe = wrapper.querySelector('iframe');
-      if (!iframe) return;
-
-      // Enable JS API
-      let src = iframe.src;
-      if (!src.includes('enablejsapi=1')) {
-        iframe.src = src + (src.includes('?') ? '&' : '?') + 'enablejsapi=1';
-      }
-
-      // Load YouTube IFrame API
-      if (!window.YT) {
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.head.appendChild(tag);
-      }
-
-      window.onYouTubeIframeAPIReady = function() {
-        new YT.Player(iframe, {
-          events: {
-            'onStateChange': (event) => {
-              if (event.data === YT.PlayerState.PLAYING) {
-                const interval = setInterval(() => {
-                  if (event.target.getPlayerState && event.target.getPlayerState() === YT.PlayerState.PLAYING) {
-                    const currentTime = Math.round(event.target.getCurrentTime());
-                    logVideo(videoId, videoTitle, currentTime);
-                  }
-                }, 15000);
-              }
-            }
-          }
-        });
-      };
-    }
-
-    // ====== NEWSLETTER FORM (FIXED) ======
-    const subscribeForm = document.getElementById('subscribeForm');
-    const emailInput = document.getElementById('emailInput');
-    const subscribeBtn = document.getElementById('subscribeBtn');
-    const btnText = document.getElementById('btnText');
-    const btnLoading = document.getElementById('btnLoading');
-    const successMessage = document.getElementById('successMessage');
-    const errorMessage = document.getElementById('errorMessage');
-
-    subscribeForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      // Reset messages
-      successMessage.classList.remove('show');
-      errorMessage.classList.remove('show');
-
-      const email = emailInput.value.trim();
-
-      // Validate
-      if (!email || !email.includes('@') || !email.includes('.')) {
-        errorMessage.textContent = 'Please enter a valid email address.';
-        errorMessage.classList.add('show');
-        emailInput.focus();
-        return;
-      }
-
-      // Loading state
-      subscribeBtn.disabled = true;
-      btnText.style.display = 'none';
-      btnLoading.style.display = 'inline';
-
-      try {
-        const response = await fetch('/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email })
-        });
-
-        if (response.ok) {
-          successMessage.classList.add('show');
-          emailInput.value = '';
-          // Hide success after 5 seconds
-          setTimeout(() => {
-            successMessage.classList.remove('show');
-          }, 5000);
-        } else {
-          const data = await response.json().catch(() => ({}));
-          errorMessage.textContent = data.message || 'Something went wrong. Please try again.';
-          errorMessage.classList.add('show');
+    <script>
+        function toggleMobileMenu() {
+            document.querySelector('.main-nav').classList.toggle('active');
         }
-      } catch (err) {
-        console.error('Subscribe error:', err);
-        errorMessage.textContent = 'Network error. Please check your connection and try again.';
-        errorMessage.classList.add('show');
-      } finally {
-        subscribeBtn.disabled = false;
-        btnText.style.display = 'inline';
-        btnLoading.style.display = 'none';
-      }
-    });
-
-    // ====== BACK TO TOP ======
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 500) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-
-    // ====== HEADER SCROLL EFFECT ======
-    const header = document.querySelector('header');
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
-      if (currentScroll > 100) {
-        header.style.background = 'rgba(10, 10, 10, 0.98)';
-      } else {
-        header.style.background = 'rgba(17, 17, 17, 0.95)';
-      }
-      lastScroll = currentScroll;
-    });
-  </script>
+        function playVideo(card, videoId) {
+            const thumbnail = card.querySelector('.video-thumbnail');
+            thumbnail.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>';
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = '';
+            sections.forEach(section => {
+                if (scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>

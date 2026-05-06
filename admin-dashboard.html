@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Home of Rest</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#128716;</span>
+                <span class="logo-text">Home of Rest</span>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="admin-dashboard.html" class="nav-link active">Dashboard</a>
+            </nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="admin-dashboard">
+            <div class="admin-header">
+                <h1>&#128736; Admin Dashboard</h1>
+                <button class="btn-logout" onclick="adminLogout()">&#128682; Logout</button>
+            </div>
+
+            <div class="admin-card">
+                <h3>&#43; Add New Video</h3>
+                <form class="video-form" onsubmit="addVideo(event)">
+                    <div class="form-group">
+                        <label>Video Title</label>
+                        <input type="text" id="videoTitle" placeholder="Enter video title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>YouTube Video ID</label>
+                        <input type="text" id="videoId" placeholder="e.g. dQw4w9WgXcQ" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Channel</label>
+                        <select id="videoChannel" required>
+                            <option value="channel1">Sleep Fast Stories</option>
+                            <option value="channel2">SleepTube</option>
+                            <option value="channel3">Ocean 4K Ultra HD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Duration</label>
+                        <input type="text" id="videoDuration" placeholder="e.g. 8 hours" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Tags (comma separated)</label>
+                        <input type="text" id="videoTags" placeholder="e.g. 432Hz, Deep Sleep, Relaxation">
+                    </div>
+                    <button type="submit" class="btn-primary">Add Video</button>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>&#128202; Video Statistics</h3>
+                <div class="video-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="video-card" style="text-align: center; padding: 1.5rem;">
+                        <h3 style="font-size: 2rem; color: var(--highlight);">18</h3>
+                        <p>Total Videos</p>
+                    </div>
+                    <div class="video-card" style="text-align: center; padding: 1.5rem;">
+                        <h3 style="font-size: 2rem; color: var(--highlight);">3</h3>
+                        <p>Channels</p>
+                    </div>
+                    <div class="video-card" style="text-align: center; padding: 1.5rem;">
+                        <h3 style="font-size: 2rem; color: var(--highlight);">6</h3>
+                        <p>Sleep Fast Stories</p>
+                    </div>
+                    <div class="video-card" style="text-align: center; padding: 1.5rem;">
+                        <h3 style="font-size: 2rem; color: var(--highlight);">3</h3>
+                        <p>SleepTube</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <h3>&#128463; Manage Videos</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Channel</th>
+                                <th>Duration</th>
+                                <th>Tags</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="videoTableBody">
+                            <tr>
+                                <td>9 Hours Deep Sleep - Bioluminescent Journey</td>
+                                <td>Sleep Fast Stories</td>
+                                <td>9 hours</td>
+                                <td>432Hz, Insomnia Relief</td>
+                                <td>
+                                    <button class="btn-small btn-edit">Edit</button>
+                                    <button class="btn-small btn-delete">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>528Hz Miracle Sleep Music</td>
+                                <td>Sleep Fast Stories</td>
+                                <td>8 hours</td>
+                                <td>528Hz, DNA Repair</td>
+                                <td>
+                                    <button class="btn-small btn-edit">Edit</button>
+                                    <button class="btn-small btn-delete">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Deep Sleep Music - Delta Waves</td>
+                                <td>SleepTube</td>
+                                <td>10 hours</td>
+                                <td>Delta Waves, Deep Sleep</td>
+                                <td>
+                                    <button class="btn-small btn-edit">Edit</button>
+                                    <button class="btn-small btn-delete">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4K Ocean Waves - Relaxing Sea Sounds</td>
+                                <td>Ocean 4K Ultra HD</td>
+                                <td>3 hours</td>
+                                <td>Ocean, 4K, Nature</td>
+                                <td>
+                                    <button class="btn-small btn-edit">Edit</button>
+                                    <button class="btn-small btn-delete">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMobileMenu() {
+            document.querySelector('.main-nav').classList.toggle('active');
+        }
+        function adminLogout() {
+            localStorage.removeItem('adminLoggedIn');
+            window.location.href = 'admin.html';
+        }
+        function checkAdminAuth() {
+            if (!localStorage.getItem('adminLoggedIn')) {
+                window.location.href = 'admin.html';
+            }
+        }
+        function addVideo(e) {
+            e.preventDefault();
+            alert('Video added successfully! (In a full implementation, this would save to a database)');
+            document.querySelector('.video-form').reset();
+        }
+        checkAdminAuth();
+    </script>
+</body>
+</html>
